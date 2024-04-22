@@ -1,0 +1,12 @@
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\bin\Debug\net8.0\TaskManagementSystem.Models.deps.json
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\bin\Debug\net8.0\TaskManagementSystem.Models.dll
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\bin\Debug\net8.0\TaskManagementSystem.Models.pdb
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TaskManagementSystem.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TaskManagementSystem.Models.AssemblyInfoInputs.cache
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TaskManagementSystem.Models.AssemblyInfo.cs
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TaskManagementSystem.Models.csproj.CoreCompileInputs.cache
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TaskManagementSystem.Models.sourcelink.json
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TaskManagementSystem.Models.dll
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\refint\TaskManagementSystem.Models.dll
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TaskManagementSystem.Models.pdb
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\ref\TaskManagementSystem.Models.dll

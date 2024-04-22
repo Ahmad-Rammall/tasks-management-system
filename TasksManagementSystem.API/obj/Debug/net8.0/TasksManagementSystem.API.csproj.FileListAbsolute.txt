@@ -135,3 +135,6 @@ C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.A
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.API\obj\Debug\net8.0\TasksManagementSystem.API.pdb
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.API\obj\Debug\net8.0\TasksManagementSystem.API.genruntimeconfig.cache
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.API\obj\Debug\net8.0\ref\TasksManagementSystem.API.dll
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.API\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.API\bin\Debug\net8.0\TaskManagementSystem.Models.dll
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.API\bin\Debug\net8.0\TaskManagementSystem.Models.pdb

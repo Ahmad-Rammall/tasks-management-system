@@ -177,6 +177,18 @@ namespace TasksManagementSystem.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RoleName = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RoleName = "User"
+                        });
                 });
 
             modelBuilder.Entity("TasksManagementSystem.API.Entities.Comment", b =>

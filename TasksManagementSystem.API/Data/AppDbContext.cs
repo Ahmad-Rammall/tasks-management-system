@@ -28,6 +28,11 @@ namespace TasksManagementSystem.API.Data
                 .HasForeignKey(c => c.TaskId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<UserRole>().HasData(
+            new UserRole { Id = 1, RoleName = "Admin" },
+            new UserRole { Id = 2, RoleName = "User" }
+            );
+
             base.OnModelCreating(modelBuilder);
         }
     }
