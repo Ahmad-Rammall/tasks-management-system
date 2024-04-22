@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
+using TasksManagementSystem.API.Helpers;
 using TasksManagementSystem.API.Repositories.Interfaces;
 
 namespace TasksManagementSystem.API.Controllers
@@ -30,6 +31,25 @@ namespace TasksManagementSystem.API.Controllers
                 return Ok(user);
             }
             catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginUser([FromBody] UserLoginDTO userLoginDTO)
+        {
+            try
+            {
+                var user = await _authRepo.LoginUser(userLoginDTO);
+                if(user == null)
+                {
+                    return NotFound("User Not Found");
+                }
+                Console.WriteLine(user);
+                return Ok(user.ConvertToDto());
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

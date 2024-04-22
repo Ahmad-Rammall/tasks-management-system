@@ -6,15 +6,14 @@ namespace TasksManagementSystem.API.Helpers
 {
     public static class DtoConversions
     {
-        public static UserDTO ConvertToDto(this User user,
-        string role)
+        public static UserDTO ConvertToDto(this User user)
         {
             return new UserDTO
             {
                 Id = user.Id,
                 FullName = user.FullName,
                 Username = user.Username,
-                RoleName = role,
+                RoleName = user.Role.RoleName,
             };
         }
     }

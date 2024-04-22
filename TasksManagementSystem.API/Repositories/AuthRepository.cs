@@ -16,9 +16,19 @@ namespace TasksManagementSystem.API.Repositories
         {
             _context = context;
         }
-        public Task<UserLoginDTO> LoginUser(UserLoginDTO userLoginDTO)
+        public async Task<User> LoginUser(UserLoginDTO userLoginDTO)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.Include(user => user.Role)
+                .FirstOrDefaultAsync(user => user.Username == userLoginDTO.Username);
+
+            if (user == null)
+                return null;
+
+            if (BCrypt.Net.BCrypt.Verify(userLoginDTO.Password, user.Password))
+                return user;
+            else
+                return null;
+
         }
         private async Task<UserRole> GetUserRole(string roleName)
         {
@@ -34,9 +44,10 @@ namespace TasksManagementSystem.API.Repositories
                 return null;
 
             // Check if Username exists
-            var user = _context.Users.FirstOrDefault(u => u.Username == userRegisterDTO.Username);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == userRegisterDTO.Username);
 
-            if (user != null) {
+            if (user != null)
+            {
                 return null;
             }
 
@@ -59,7 +70,7 @@ namespace TasksManagementSystem.API.Repositories
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
-            return newUser.ConvertToDto(userRole.RoleName);
+            return newUser.ConvertToDto();
         }
     }
 }
