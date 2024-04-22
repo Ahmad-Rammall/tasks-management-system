@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
 using TasksManagementSystem.API.Data;
@@ -12,11 +16,37 @@ namespace TasksManagementSystem.API.Repositories
     public class AuthRepository : IAuthRepository
     {
         private readonly AppDbContext _context;
-        public AuthRepository(AppDbContext context)
+        private readonly IConfiguration _config;
+
+        public AuthRepository(AppDbContext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
-        public async Task<User> LoginUser(UserLoginDTO userLoginDTO)
+        private string CreateToken(User user)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                _config.GetSection("AppSettings:secretKey").Value!));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
+            var token = new JwtSecurityToken(
+                    claims: claims,
+                    expires: DateTime.Now.AddDays(1),
+                    signingCredentials: creds
+                );
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt;
+        }
+
+        public async Task<LoginResponseDTO> LoginUser(UserLoginDTO userLoginDTO)
         {
             var user = await _context.Users.Include(user => user.Role)
                 .FirstOrDefaultAsync(user => user.Username == userLoginDTO.Username);
@@ -25,7 +55,10 @@ namespace TasksManagementSystem.API.Repositories
                 return null;
 
             if (BCrypt.Net.BCrypt.Verify(userLoginDTO.Password, user.Password))
-                return user;
+            {
+                var token = CreateToken(user);
+                return user.ConvertToDto(token);
+            }
             else
                 return null;
 

@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
+using TasksManagementSystem.API.Entities;
 using TasksManagementSystem.API.Helpers;
 using TasksManagementSystem.API.Repositories.Interfaces;
 
@@ -12,10 +17,12 @@ namespace TasksManagementSystem.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _authRepo;
+
         public AuthController(IAuthRepository authRepo)
         {
             _authRepo = authRepo;
         }
+        
 
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDTO userRegisterDTO)
@@ -46,8 +53,8 @@ namespace TasksManagementSystem.API.Controllers
                 {
                     return NotFound("User Not Found");
                 }
-                Console.WriteLine(user);
-                return Ok(user.ConvertToDto());
+
+                return Ok(user);
             }
             catch (Exception ex)
             {

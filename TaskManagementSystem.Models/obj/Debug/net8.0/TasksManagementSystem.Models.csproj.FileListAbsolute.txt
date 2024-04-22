@@ -1,0 +1,5 @@
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TasksManagementSystem.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TasksManagementSystem.Models.AssemblyInfoInputs.cache
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TasksManagementSystem.Models.AssemblyInfo.cs
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TasksManagementSystem.Models.csproj.CoreCompileInputs.cache
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TaskManagementSystem.Models\obj\Debug\net8.0\TasksManagementSystem.Models.sourcelink.json

@@ -16,5 +16,14 @@ namespace TasksManagementSystem.API.Helpers
                 RoleName = user.Role.RoleName,
             };
         }
+        public static LoginResponseDTO ConvertToDto(this User user, string token)
+        {
+            return new LoginResponseDTO
+            {
+                User = user.ConvertToDto(),
+                Token= token
+          
+            };
+        }
     }
 }
