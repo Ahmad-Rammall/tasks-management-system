@@ -10,10 +10,12 @@ namespace TasksManagementSystem.API.Entities
         public string FullName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-
-        [ForeignKey("Role")]
         public int RoleId { get; set; }
         public bool isDeleted { get; set; }
+
+        [ForeignKey(nameof(RoleId))]
         public UserRole Role { get; set; }
+        public List<TaskEntity> Tasks { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }
