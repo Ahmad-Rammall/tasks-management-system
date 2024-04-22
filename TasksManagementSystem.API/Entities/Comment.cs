@@ -12,7 +12,7 @@ namespace TasksManagementSystem.API.Entities
 
         [ForeignKey("TaskProp")]
         public int TaskId { get; set; }
-        public Task TaskProp { get; set; }
+        public TaskEntity TaskProp { get; set; }
         public User UserProp { get; set; }
     }
 }

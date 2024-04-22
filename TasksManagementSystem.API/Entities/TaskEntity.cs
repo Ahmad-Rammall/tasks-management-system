@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TasksManagementSystem.API.Entities
 {
-    public class Task
+    public class TaskEntity
     {
         [Key]
         public int Id { get; set; }

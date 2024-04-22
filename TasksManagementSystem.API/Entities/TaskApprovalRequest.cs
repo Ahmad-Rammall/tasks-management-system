@@ -10,6 +10,6 @@ namespace TasksManagementSystem.API.Entities
         public int TaskId { get; set; }
         public string ExtraWork { get; set; }
         public bool IsApproved { get; set; }
-        public Task TaskProp { get; set; }
+        public TaskEntity TaskProp { get; set; }
     }
 }
