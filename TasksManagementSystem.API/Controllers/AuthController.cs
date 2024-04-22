@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
-using TaskManagementSystem.Models.DTOs.UserDTOs;
-using TasksManagementSystem.API.Entities;
 using TasksManagementSystem.API.Helpers;
 using TasksManagementSystem.API.Repositories.Interfaces;
 
@@ -25,7 +19,7 @@ namespace TasksManagementSystem.API.Controllers
         
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDTO userRegisterDTO)
+        public async Task<ActionResult<UserRegisterDTO>> RegisterUser([FromBody] UserRegisterDTO userRegisterDTO)
         {
             try
             {
@@ -35,7 +29,7 @@ namespace TasksManagementSystem.API.Controllers
                 {
                     return BadRequest("User Not Added");
                 }
-                return Ok(user);
+                return Ok(user.ConvertToDto());
             }
             catch(Exception ex)
             {

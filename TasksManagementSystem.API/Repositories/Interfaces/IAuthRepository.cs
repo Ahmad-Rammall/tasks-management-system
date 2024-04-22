@@ -7,6 +7,6 @@ namespace TasksManagementSystem.API.Repositories.Interfaces
     public interface IAuthRepository
     {
         Task<LoginResponseDTO> LoginUser(UserLoginDTO userLoginDTO);
-        Task<UserDTO> RegisterUser(UserRegisterDTO userRegisterDTO);
+        Task<User> RegisterUser(UserRegisterDTO userRegisterDTO);
     }
 }

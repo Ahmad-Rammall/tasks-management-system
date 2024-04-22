@@ -69,7 +69,7 @@ namespace TasksManagementSystem.API.Repositories
             return userRole;
         }
 
-        public async Task<UserDTO> RegisterUser(UserRegisterDTO userRegisterDTO)
+        public async Task<User> RegisterUser(UserRegisterDTO userRegisterDTO)
         {
             if (string.IsNullOrWhiteSpace(userRegisterDTO.Username)
                 || string.IsNullOrWhiteSpace(userRegisterDTO.FullName)
@@ -103,7 +103,7 @@ namespace TasksManagementSystem.API.Repositories
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
-            return newUser.ConvertToDto();
+            return newUser;
         }
     }
 }
