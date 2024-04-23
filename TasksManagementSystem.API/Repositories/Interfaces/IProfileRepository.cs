@@ -1,4 +1,5 @@
 ﻿using TaskManagementSystem.Models.DTOs.AuthDTOs;
+using TaskManagementSystem.Models.DTOs.UserDTOs;
 using TasksManagementSystem.API.Entities;
 
 namespace TasksManagementSystem.API.Repositories.Interfaces
@@ -7,7 +8,7 @@ namespace TasksManagementSystem.API.Repositories.Interfaces
     {
         Task<IEnumerable<User>> GetAllEmployees();
         Task<User> AddEmployee(UserRegisterDTO userRegisterDTO);
-        Task<User> UpdateEmployee(UserRegisterDTO userRegisterDTO);
+        Task<User> UpdateEmployee(int employeeId, UserUpdateDTO userUpdateDTO);
         Task<User> DeleteEmployee(int id);
     }
 }

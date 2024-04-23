@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
+using TaskManagementSystem.Models.DTOs.UserDTOs;
 using TasksManagementSystem.API.Data;
 using TasksManagementSystem.API.Entities;
 using TasksManagementSystem.API.Repositories.Interfaces;
@@ -69,9 +70,30 @@ namespace TasksManagementSystem.API.Repositories
             return await _context.Users.Where(u => u.RoleId == roleId).ToListAsync();
         }
 
-        public Task<User> UpdateEmployee(UserRegisterDTO userRegisterDTO)
+        public async Task<User> UpdateEmployee(int employeeId, UserUpdateDTO userUpdateDTO)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(employeeId);
+
+            if(user == null)
+            {
+                return null;
+            }
+
+            // Hash Password
+            string salt = BCrypt.Net.BCrypt.GenerateSalt();
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(userUpdateDTO.Password);
+
+            user.Username = userUpdateDTO.Username;
+            user.Password = hashedPassword;
+            user.FullName = userUpdateDTO.FullName;
+            user.RoleId = userUpdateDTO.RoleId;
+            user.isDeleted = userUpdateDTO.IsDeleted;
+
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return user;
+
         }
     }
 }

@@ -21,8 +21,8 @@ namespace TasksManagementSystem.API.Helpers
             return new LoginResponseDTO
             {
                 User = user.ConvertToDto(),
-                Token= token
-          
+                Token = token
+
             };
         }
         public static IEnumerable<UserDTO> ConvertToDto(this IEnumerable<User> users)

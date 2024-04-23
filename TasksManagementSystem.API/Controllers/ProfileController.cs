@@ -73,5 +73,23 @@ namespace TasksManagementSystem.API.Controllers
                 return BadRequest(ex);
             }
         }
+
+        [HttpPut]
+        [Route("{employeeId:int}")]
+        public async Task<ActionResult<UserDTO>> UpdateEmployee([FromRoute] int employeeId, [FromBody] UserUpdateDTO userUpdateDTO)
+        {
+            try
+            {
+                var user = await _profileRepository.UpdateEmployee(employeeId, userUpdateDTO);
+                if (user == null)
+                    return NotFound("User Doesnt Exist");
+
+                return Ok(user.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }
