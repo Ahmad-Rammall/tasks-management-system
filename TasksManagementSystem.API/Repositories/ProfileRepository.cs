@@ -23,9 +23,19 @@ namespace TasksManagementSystem.API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<User> DeleteEmployee(int Id)
+        public async Task<User> DeleteEmployee(int id)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(id);
+            if(user == null || user.isDeleted == true)
+            {
+                return null;
+            }
+
+            user.isDeleted = true;
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return user;
         }
 
         public async Task<IEnumerable<User>> GetAllEmployees()

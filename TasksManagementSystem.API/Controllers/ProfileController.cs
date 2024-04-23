@@ -35,5 +35,25 @@ namespace TasksManagementSystem.API.Controllers
                 return BadRequest(ex);
             }
         }
+
+        [HttpDelete]
+        [Route("{userId:int}")]
+        public async Task<ActionResult<UserDTO>> DeleteUser([FromRoute] int userId)
+        {
+            try
+            {
+                var user = await _profileRepository.DeleteEmployee(userId);
+                if(user == null)
+                {
+                    return NotFound("User Not Found!");
+                }
+
+                return Ok(user.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }

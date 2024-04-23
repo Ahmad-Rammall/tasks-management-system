@@ -13,7 +13,7 @@ namespace TasksManagementSystem.API.Helpers
                 Id = user.Id,
                 FullName = user.FullName,
                 Username = user.Username,
-                RoleName = user.Role.RoleName,
+                RoleName = "User",
             };
         }
         public static LoginResponseDTO ConvertToDto(this User user, string token)
