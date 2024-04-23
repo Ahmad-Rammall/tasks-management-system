@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
 using TasksManagementSystem.API.Entities;
 using TasksManagementSystem.API.Helpers;
@@ -47,6 +48,23 @@ namespace TasksManagementSystem.API.Controllers
                 {
                     return NotFound("User Not Found!");
                 }
+
+                return Ok(user.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<UserDTO>> AddEmployee([FromBody] UserRegisterDTO userRegisterDTO)
+        {
+            try
+            {
+                var user = await _profileRepository.AddEmployee(userRegisterDTO);
+                if (user == null)
+                    return BadRequest("User Already Exists");
 
                 return Ok(user.ConvertToDto());
             }

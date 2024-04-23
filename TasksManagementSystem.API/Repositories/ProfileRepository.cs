@@ -18,15 +18,40 @@ namespace TasksManagementSystem.API.Repositories
             var role = await _context.UserRoles.FirstOrDefaultAsync(r => r.RoleName == "User");
             return role.Id;
         }
-        public Task<User> AddEmployee(UserRegisterDTO userRegisterDTO)
+        private async Task<bool> UserExists(string username)
         {
-            throw new NotImplementedException();
+            return await _context.Users.AnyAsync(user => user.Username.Equals(username));
+        }
+        public async Task<User> AddEmployee(UserRegisterDTO userRegisterDTO)
+        {
+            if (await UserExists(userRegisterDTO.Username))
+            {
+                return null;
+            }
+
+            // Hash Password
+            string salt = BCrypt.Net.BCrypt.GenerateSalt();
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(userRegisterDTO.Password);
+
+            var user = new User
+            {
+                Username = userRegisterDTO.Username,
+                FullName = userRegisterDTO.FullName,
+                RoleId = await GetEmployeeRoleId(),
+                Password =hashedPassword,
+                isDeleted = false
+            };
+
+            _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+
+            return user;
         }
 
         public async Task<User> DeleteEmployee(int id)
         {
             var user = await _context.Users.FindAsync(id);
-            if(user == null || user.isDeleted == true)
+            if (user == null || user.isDeleted == true)
             {
                 return null;
             }
