@@ -25,5 +25,18 @@ namespace TasksManagementSystem.API.Helpers
           
             };
         }
+        public static IEnumerable<UserDTO> ConvertToDto(this IEnumerable<User> users)
+        {
+            List<UserDTO> userDTOs = users.Select(user =>
+                new UserDTO
+                {
+                    Id = user.Id,
+                    FullName = user.FullName,
+                    Username = user.Username,
+                    RoleName = "User",
+                }).ToList();
+
+            return userDTOs;
+        }
     }
 }

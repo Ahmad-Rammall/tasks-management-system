@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManagementSystem.Models.DTOs.UserDTOs
 {
+    [Serializable]
+
     public class UserDTO
     {
         public int Id { get; set; }

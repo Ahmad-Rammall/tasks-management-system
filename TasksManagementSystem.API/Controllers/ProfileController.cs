@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TaskManagementSystem.Models.DTOs.UserDTOs;
+using TasksManagementSystem.API.Entities;
+using TasksManagementSystem.API.Helpers;
+using TasksManagementSystem.API.Repositories.Interfaces;
 
 namespace TasksManagementSystem.API.Controllers
 {
@@ -7,5 +11,29 @@ namespace TasksManagementSystem.API.Controllers
     [ApiController]
     public class ProfileController : ControllerBase
     {
+        private readonly IProfileRepository _profileRepository;
+        public ProfileController(IProfileRepository profileRepository)
+        {
+            _profileRepository = profileRepository; 
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllEmployees()
+        {
+            try
+            {
+                var employees = await _profileRepository.GetAllEmployees();
+                if (employees == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(employees.ConvertToDto());
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }
