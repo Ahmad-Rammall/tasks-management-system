@@ -1,4 +1,7 @@
-﻿using TaskManagementSystem.Models.DTOs.AuthDTOs;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
+using TaskManagementSystem.Models.DTOs.AuthDTOs;
+using TaskManagementSystem.Models.DTOs.CommentDTOs;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
 using TaskManagementSystem.Models.DTOs.TaskDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
@@ -91,6 +94,20 @@ namespace TasksManagementSystem.API.Helpers
                 TaskId = request.TaskId,
                 IsApproved = request.IsApproved
             };
+        }
+        public static IEnumerable<CommentDTO> ConvertToDto(this IEnumerable<Comment> comments)
+        {
+
+            List<CommentDTO> commentsList = comments.Select(comment =>
+                new CommentDTO
+                {
+                    Id = comment.Id,
+                    Content = comment.Content,
+                    UserId = comment.UserId,
+                    TaskId = comment.TaskId
+                }).ToList();
+
+            return commentsList;
         }
     }
 }
