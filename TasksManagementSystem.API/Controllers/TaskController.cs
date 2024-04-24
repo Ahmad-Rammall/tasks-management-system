@@ -34,5 +34,26 @@ namespace TasksManagementSystem.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<TaskDTO>> AddTaskToEmployee(TaskToAddDTO taskToAddDTO)
+        {
+            try
+            {
+                var task = await _taskRepo.AddTaskToEmployee(taskToAddDTO);
+                if(task == null)
+                {
+                    return NotFound("Project or Employee Not Found.");
+                }
+
+                return Ok(task.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
+
+    
 }

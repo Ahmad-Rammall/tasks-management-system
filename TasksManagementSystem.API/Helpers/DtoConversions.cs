@@ -73,5 +73,15 @@ namespace TasksManagementSystem.API.Helpers
                 }).ToList();
             return tasksList;
         }
+        public static TaskDTO ConvertToDto(this TaskEntity task)
+        {
+            return new TaskDTO
+            {
+                Id = task.Id,
+                Title = task.Title,
+                Description = task.Description,
+                IsCompleted = task.IsCompleted,
+            };
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace TasksManagementSystem.API.Entities
 {
@@ -11,6 +12,8 @@ namespace TasksManagementSystem.API.Entities
         public int UserId {  get; set; }
         public int ProjectId { get; set; }
         public bool IsCompleted {  get; set; }
+
+        [JsonIgnore]
         public User UserProp {  get; set; }
         public Project ProjectProp { get; set; }
         public List<Comment> Comments { get; set; }
