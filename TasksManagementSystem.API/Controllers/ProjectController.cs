@@ -34,5 +34,24 @@ namespace TasksManagementSystem.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ProjectDTO>> AddProject(ProjectToAddDTO projectDTO)
+        {
+            try
+            {
+                var project = await _projectRepository.AddProject(projectDTO);
+                if(project == null)
+                {
+                    return BadRequest();
+                }
+
+                return Ok(project.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

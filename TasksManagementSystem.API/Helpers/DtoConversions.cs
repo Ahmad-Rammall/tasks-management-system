@@ -51,5 +51,14 @@ namespace TasksManagementSystem.API.Helpers
 
             return projectsList;
         }
+        public static ProjectDTO ConvertToDto(this Project project)
+        {
+            return new ProjectDTO
+            {
+                Id = project.Id,
+                Title = project.Title,
+                Description = project.Description,
+            };
+        }
     }
 }

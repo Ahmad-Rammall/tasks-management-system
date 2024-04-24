@@ -13,9 +13,18 @@ namespace TasksManagementSystem.API.Repositories
         {
             _context = context;
         }
-        public Task<Project> AddProject(ProjectToAddDTO projectToAddDTO)
+        public async Task<Project> AddProject(ProjectToAddDTO projectToAddDTO)
         {
-            throw new NotImplementedException();
+            var newProject = new Project
+            {
+                Title = projectToAddDTO.Title,
+                Description = projectToAddDTO.Description,
+            };
+
+            _context.Projects.AddAsync(newProject);
+            await _context.SaveChangesAsync();
+
+            return newProject;
         }
 
         public Task<Project> DeleteProject(int id)
