@@ -23,6 +23,11 @@ namespace TasksManagementSystem.API.Repositories
         {
             return await _context.Tasks.AnyAsync(t => t.Id == taskId);
         }
+        private async Task<TaskApprovalRequest> GetRequest(int requestId)
+        {
+            var request = await _context.TaskApprovalRequests.FindAsync(requestId);
+            return request;
+        }
         private async Task<bool> EmployeeExists(int employeeId)
         {
             var employee = await _context.Users.FindAsync(employeeId);
@@ -31,9 +36,20 @@ namespace TasksManagementSystem.API.Repositories
 
             return true;
         }
-        public Task<TaskApprovalRequest> AcceptRequest(int taskId)
+        public async Task<TaskApprovalRequest> AcceptRequest(int requestId)
         {
-            throw new NotImplementedException();
+            var request = await GetRequest(requestId);
+            if(request == null)
+            {
+                return null;
+            }
+
+            request.IsApproved = true;
+
+            _context.Entry(request).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return request;
         }
 
         public async Task<TaskEntity> AddTaskToEmployee(TaskToAddDTO taskToAddDTO)
@@ -68,7 +84,7 @@ namespace TasksManagementSystem.API.Repositories
             return await _context.Tasks.Where(task => task.ProjectId == projectId).ToListAsync();
         }
 
-        public Task<TaskApprovalRequest> RejectRequest(int taskId)
+        public Task<TaskApprovalRequest> RejectRequest(int requestId)
         {
             throw new NotImplementedException();
         }
