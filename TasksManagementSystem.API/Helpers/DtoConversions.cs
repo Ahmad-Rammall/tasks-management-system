@@ -1,5 +1,6 @@
 ﻿using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
+using TaskManagementSystem.Models.DTOs.TaskDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
 using TasksManagementSystem.API.Entities;
 
@@ -59,6 +60,18 @@ namespace TasksManagementSystem.API.Helpers
                 Title = project.Title,
                 Description = project.Description,
             };
+        }
+        public static IEnumerable<TaskDTO> ConvertToDto(this IEnumerable<TaskEntity> tasks)
+        {
+            List<TaskDTO> tasksList = tasks.Select(task =>
+                new TaskDTO
+                {
+                    Id = task.Id,
+                    Title = task.Title,
+                    Description = task.Description,
+                    IsCompleted = task.IsCompleted,
+                }).ToList();
+            return tasksList;
         }
     }
 }
