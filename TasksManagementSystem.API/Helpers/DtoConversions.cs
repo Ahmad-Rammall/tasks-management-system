@@ -83,5 +83,14 @@ namespace TasksManagementSystem.API.Helpers
                 IsCompleted = task.IsCompleted,
             };
         }
+        public static TaskRequestDTO ConvertToDto(this TaskApprovalRequest request)
+        {
+            return new TaskRequestDTO
+            {
+                Id = request.Id,
+                TaskId = request.TaskId,
+                IsApproved = request.IsApproved
+            };
+        }
     }
 }

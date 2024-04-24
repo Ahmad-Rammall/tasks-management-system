@@ -6,7 +6,6 @@ namespace TasksManagementSystem.API.Entities
     {
         public int Id { get; set; }
         public int TaskId { get; set; }
-        public string ExtraWork { get; set; }
         public bool IsApproved { get; set; }
 
         [ForeignKey(nameof(TaskId))]

@@ -53,6 +53,26 @@ namespace TasksManagementSystem.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        [Route("request")]
+        public async Task<ActionResult<TaskRequestDTO>> SendRequest([FromBody] int taskid)
+        {
+            try
+            {
+                var request = await _taskRepo.SendApprovalRequest(taskid);
+                if(request == null)
+                {
+                    return NotFound("Task Doesnt Exist!");
+                }
+
+                return Ok(request.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 
     

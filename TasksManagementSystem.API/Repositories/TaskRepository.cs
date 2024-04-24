@@ -19,6 +19,10 @@ namespace TasksManagementSystem.API.Repositories
         {
             return await _context.Projects.AnyAsync(p => p.Id == projectId);
         }
+        private async Task<bool> TaskExists(int taskId)
+        {
+            return await _context.Tasks.AnyAsync(t => t.Id == taskId);
+        }
         private async Task<bool> EmployeeExists(int employeeId)
         {
             var employee = await _context.Users.FindAsync(employeeId);
@@ -69,9 +73,24 @@ namespace TasksManagementSystem.API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<TaskApprovalRequest> SendApprovalRequest(int taskId)
+        public async Task<TaskApprovalRequest> SendApprovalRequest(int taskId)
         {
-            throw new NotImplementedException();
+            if(! await TaskExists(taskId))
+            {
+                return null;
+            }
+
+            var newRequest = new TaskApprovalRequest
+            {
+                TaskId = taskId,
+                IsApproved = false,
+            };
+
+            await _context.TaskApprovalRequests.AddAsync(newRequest);
+            await _context.SaveChangesAsync();
+
+            return newRequest;
+
         }
     }
 }
