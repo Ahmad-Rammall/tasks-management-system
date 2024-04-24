@@ -94,6 +94,27 @@ namespace TasksManagementSystem.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete]
+        [Route("request/{requestId:int}")]
+        public async Task<ActionResult<TaskRequestDTO>> RejectRequest([FromRoute] int requestId)
+        {
+            try
+            {
+                var request = await _taskRepo.RejectRequest(requestId);
+                if (request == null)
+                {
+                    return NotFound("Request Doesnt Exist!");
+                }
+
+                return Ok(request.ConvertToDto());
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 
     

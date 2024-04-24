@@ -84,9 +84,18 @@ namespace TasksManagementSystem.API.Repositories
             return await _context.Tasks.Where(task => task.ProjectId == projectId).ToListAsync();
         }
 
-        public Task<TaskApprovalRequest> RejectRequest(int requestId)
+        public async Task<TaskApprovalRequest> RejectRequest(int requestId)
         {
-            throw new NotImplementedException();
+            var request = await GetRequest(requestId);
+            if (request == null)
+            {
+                return null;
+            }
+
+            _context.TaskApprovalRequests.Remove(request);
+            await _context.SaveChangesAsync();
+
+            return request;
         }
 
         public async Task<TaskApprovalRequest> SendApprovalRequest(int taskId)
