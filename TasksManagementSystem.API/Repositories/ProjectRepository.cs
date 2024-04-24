@@ -13,6 +13,10 @@ namespace TasksManagementSystem.API.Repositories
         {
             _context = context;
         }
+        private async Task<bool> ProjectExists(int id)
+        {
+            return await _context.Projects.AnyAsync(p => p.Id == id);
+        }
         public async Task<Project> AddProject(ProjectToAddDTO projectToAddDTO)
         {
             var newProject = new Project
@@ -27,9 +31,19 @@ namespace TasksManagementSystem.API.Repositories
             return newProject;
         }
 
-        public Task<Project> DeleteProject(int id)
+        public async Task<Project> DeleteProject(int projectId)
         {
-            throw new NotImplementedException();
+            if(! await ProjectExists(projectId))
+            {
+                return null;
+            }
+
+            var project = await _context.Projects.FindAsync(projectId);
+
+            _context.Projects.Remove(project);
+            await _context.SaveChangesAsync();
+
+            return project;
         }
 
         public async Task<IEnumerable<Project>> GetAllProjects()
@@ -37,9 +51,23 @@ namespace TasksManagementSystem.API.Repositories
             return await _context.Projects.ToListAsync();
         }
 
-        public Task<Project> UpdateProject(int projectId, ProjectToAddDTO projectToAddDTO)
+        public async Task<Project> UpdateProject(int projectId, ProjectToAddDTO projectToAddDTO)
         {
-            throw new NotImplementedException();
+            if (!await ProjectExists(projectId))
+            {
+                return null;
+            }
+
+            var newProject = new Project
+            {
+                Title = projectToAddDTO.Title,
+                Description = projectToAddDTO.Description,
+            };
+
+            _context.Projects.AddAsync(newProject);
+            await _context.SaveChangesAsync();
+
+            return newProject;
         }
     }
 }

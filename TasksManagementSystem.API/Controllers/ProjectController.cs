@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
 using TasksManagementSystem.API.Helpers;
@@ -8,6 +9,7 @@ namespace TasksManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _projectRepository;
@@ -36,7 +38,7 @@ namespace TasksManagementSystem.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProjectDTO>> AddProject(ProjectToAddDTO projectDTO)
+        public async Task<ActionResult<ProjectDTO>> AddProject([FromBody] ProjectToAddDTO projectDTO)
         {
             try
             {
@@ -47,6 +49,43 @@ namespace TasksManagementSystem.API.Controllers
                 }
 
                 return Ok(project.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("{projectId:int}")]
+        public async Task<ActionResult<ProjectDTO>> UpdateProject([FromRoute] int projectId,[FromBody] ProjectToAddDTO projectDTO)
+        {
+            try
+            {
+                var project = await _projectRepository.UpdateProject(projectId, projectDTO);
+                if (project == null)
+                    return NotFound("Project Not Found");
+
+                return Ok(project.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("{projectId:int}")]
+        public async Task<ActionResult<ProjectDTO>> DeleteProject([FromRoute] int projectId)
+        {
+            try
+            {
+                var project = await _projectRepository.DeleteProject(projectId);
+                if (project == null)
+                    return NotFound("Project Not Found");
+
+                return Ok(project.ConvertToDto());
+
             }
             catch (Exception ex)
             {

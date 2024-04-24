@@ -8,6 +8,6 @@ namespace TasksManagementSystem.API.Repositories.Interfaces
         Task<IEnumerable<Project>> GetAllProjects();
         Task<Project> AddProject(ProjectToAddDTO projectToAddDTO);
         Task<Project> UpdateProject(int projectId, ProjectToAddDTO projectToAddDTO);
-        Task<Project> DeleteProject(int id);
+        Task<Project> DeleteProject(int projectId);
     }
 }
