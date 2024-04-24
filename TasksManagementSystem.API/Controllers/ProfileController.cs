@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
@@ -10,6 +11,7 @@ namespace TasksManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProfileController : ControllerBase
     {
         private readonly IProfileRepository _profileRepository;

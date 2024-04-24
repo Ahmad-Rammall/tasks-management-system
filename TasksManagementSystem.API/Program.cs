@@ -23,6 +23,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
 
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
 
 // Configure JWT
