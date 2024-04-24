@@ -25,8 +25,11 @@ namespace TasksManagementSystem.API.Repositories
         }
         private async Task<TaskApprovalRequest> GetRequest(int requestId)
         {
-            var request = await _context.TaskApprovalRequests.FindAsync(requestId);
-            return request;
+            return await _context.TaskApprovalRequests.FindAsync(requestId);
+        }
+        private async Task<TaskEntity> GetTask(int taskId)
+        {
+            return await _context.Tasks.FindAsync(taskId);
         }
         private async Task<bool> EmployeeExists(int employeeId)
         {
@@ -44,9 +47,14 @@ namespace TasksManagementSystem.API.Repositories
                 return null;
             }
 
-            request.IsApproved = true;
+            var task = await GetTask(request.TaskId);
+            if (task == null)
+                return null;
 
-            _context.Entry(request).State = EntityState.Modified;
+            task.IsCompleted = true;
+
+            _context.Entry(task).State = EntityState.Modified;
+            _context.TaskApprovalRequests.Remove(request);
             await _context.SaveChangesAsync();
 
             return request;
