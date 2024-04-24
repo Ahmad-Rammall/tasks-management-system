@@ -109,5 +109,15 @@ namespace TasksManagementSystem.API.Helpers
 
             return commentsList;
         }
+        public static CommentDTO ConvertToDto(this Comment comment)
+        {
+            return new CommentDTO
+            {
+                Id = comment.Id,
+                Content = comment.Content,
+                UserId = comment.UserId,
+                TaskId = comment.TaskId
+            };
+        }
     }
 }

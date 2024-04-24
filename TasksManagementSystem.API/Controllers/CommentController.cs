@@ -34,5 +34,24 @@ namespace TasksManagementSystem.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<CommentDTO>> AddComment([FromBody] CommentToAddDTO commentToAddDTO)
+        {
+            try
+            {
+                var comment = await _commentRepo.AddComment(commentToAddDTO);
+                if (comment == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(comment.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

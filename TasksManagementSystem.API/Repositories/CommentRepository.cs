@@ -13,9 +13,30 @@ namespace TasksManagementSystem.API.Repositories
         {
             _context = context;
         }
-        public Task<Comment> AddComment(CommentToAddDTO commentToAddDTO)
+        private async Task<bool> TaskExists(int taskId)
         {
-            throw new NotImplementedException();
+            return await _context.Tasks.AnyAsync(t => t.Id == taskId);
+        }
+        private async Task<bool> UserExists(int userId)
+        {
+            return await _context.Users.AnyAsync(u => u.Id == userId);
+        }
+        public async Task<Comment> AddComment(CommentToAddDTO commentToAddDTO)
+        {
+            if (!await UserExists(commentToAddDTO.UserId) || !await TaskExists(commentToAddDTO.TaskId))
+                return null;
+
+            var comment = new Comment
+            {
+                Content = commentToAddDTO.Content,
+                UserId = commentToAddDTO.UserId,
+                TaskId = commentToAddDTO.TaskId
+            };
+
+            await _context.Comments.AddAsync(comment);
+            await _context.SaveChangesAsync();
+
+            return comment;
         }
 
         public async Task<IEnumerable<Comment>> GetAllTaskComments(int taskId)
