@@ -5,6 +5,8 @@ using TaskManagementSystem.Models.DTOs.TaskDTOs;
 using TasksManagementSystem.API.Data;
 using TasksManagementSystem.API.Entities;
 using TasksManagementSystem.API.Repositories.Interfaces;
+using System.Threading.Tasks;
+using Azure.Core;
 
 namespace TasksManagementSystem.API.Repositories
 {
@@ -51,9 +53,7 @@ namespace TasksManagementSystem.API.Repositories
             if (task == null)
                 return null;
 
-            task.IsCompleted = true;
-
-            _context.Entry(task).State = EntityState.Modified;
+            _context.Tasks.Remove(task);
             _context.TaskApprovalRequests.Remove(request);
             await _context.SaveChangesAsync();
 
@@ -96,10 +96,15 @@ namespace TasksManagementSystem.API.Repositories
         {
             var request = await GetRequest(requestId);
             if (request == null)
-            {
                 return null;
-            }
 
+            var task = await GetTask(request.TaskId);
+            if (task == null)
+                return null;
+
+            task.IsCompleted = false;
+
+            _context.Entry(task).State = EntityState.Modified;
             _context.TaskApprovalRequests.Remove(request);
             await _context.SaveChangesAsync();
 
@@ -108,10 +113,12 @@ namespace TasksManagementSystem.API.Repositories
 
         public async Task<TaskApprovalRequest> SendApprovalRequest(int taskId)
         {
-            if(! await TaskExists(taskId))
-            {
+
+            var task = await GetTask(taskId);
+            if (task == null)
                 return null;
-            }
+
+            task.IsCompleted = true;
 
             var newRequest = new TaskApprovalRequest
             {
@@ -119,6 +126,7 @@ namespace TasksManagementSystem.API.Repositories
                 IsApproved = false,
             };
 
+            _context.Entry(task).State = EntityState.Modified;
             await _context.TaskApprovalRequests.AddAsync(newRequest);
             await _context.SaveChangesAsync();
 

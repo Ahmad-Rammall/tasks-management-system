@@ -57,7 +57,7 @@ namespace TasksManagementSystem.API.Controllers
         }
 
         [HttpPost]
-        [Route("request")]
+        [Route("sendRequest")]
         public async Task<ActionResult<TaskRequestDTO>> SendRequest([FromBody] int taskid)
         {
             try
@@ -76,8 +76,8 @@ namespace TasksManagementSystem.API.Controllers
             }
         }
 
-        [HttpPut]
-        [Route("request/{requestId:int}")]
+        [HttpDelete]
+        [Route("acceptRequest/{requestId:int}")]
         public async Task<ActionResult<TaskRequestDTO>> AcceptRequest([FromRoute] int requestId)
         {
             try
@@ -97,8 +97,8 @@ namespace TasksManagementSystem.API.Controllers
             }
         }
 
-        [HttpDelete]
-        [Route("request/{requestId:int}")]
+        [HttpPut]
+        [Route("rejectRequest/{requestId:int}")]
         public async Task<ActionResult<TaskRequestDTO>> RejectRequest([FromRoute] int requestId)
         {
             try
