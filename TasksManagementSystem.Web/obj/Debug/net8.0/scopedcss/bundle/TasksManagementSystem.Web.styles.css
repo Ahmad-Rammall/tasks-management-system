@@ -215,3 +215,51 @@ h2[b-ovwlv0ipt7] {
     .submit-btn:hover[b-ovwlv0ipt7] {
         background-color: #0056b3;
     }
+/* /Pages/Register/RegisterPage.razor.rz.scp.css */
+.page[b-jx3g2bi2zq] {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container[b-jx3g2bi2zq] {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+h2[b-jx3g2bi2zq] {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input[b-jx3g2bi2zq] {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-btn[b-jx3g2bi2zq] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .submit-btn:hover[b-jx3g2bi2zq] {
+        background-color: #0056b3;
+    }

@@ -9,7 +9,7 @@
             <input type="password" placeholder="Password" class="input" @bind="Password">
             <button type="button" class="submit-btn" @onclick="HandleLogin">Login</button>
         </form>
-        
+        <a href="/register">Register</a>
         @if(ErrorMessage != null)
         {
             <DisplayError Message="@ErrorMessage" />

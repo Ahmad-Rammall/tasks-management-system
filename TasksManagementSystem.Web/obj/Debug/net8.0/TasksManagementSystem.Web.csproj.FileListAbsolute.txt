@@ -1400,3 +1400,4 @@ C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.W
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\webcil\TaskManagementSystem.Models.wasm
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\compressed\4rkkpr9u4q.gz
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\compressed\ru69mmfxqf.gz
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Pages\Register\RegisterPage.razor.rz.scp.css

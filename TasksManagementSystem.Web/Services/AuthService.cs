@@ -38,9 +38,31 @@ namespace TasksManagementSystem.Web.Services
             }
         }
 
-        public Task<UserRegisterDTO> RegisterUser(UserRegisterDTO userRegisterDTO)
+        public async Task<UserRegisterDTO> RegisterUser(UserRegisterDTO userRegisterDTO)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync<UserRegisterDTO>
+                    ("/api/Auth/register", userRegisterDTO);
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        return default(UserRegisterDTO);
+                    }
+
+                    return await response.Content.ReadFromJsonAsync<UserRegisterDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
