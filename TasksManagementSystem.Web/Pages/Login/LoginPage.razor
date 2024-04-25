@@ -1,0 +1,19 @@
+﻿@page "/"
+@inherits LoginBase
+
+<div class="page">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post">
+            <input type="text" placeholder="Username" class="input" @bind="Username">
+            <input type="password" placeholder="Password" class="input" @bind="Password">
+            <button type="button" class="submit-btn" @onclick="HandleLogin">Login</button>
+        </form>
+        
+        @if(ErrorMessage != null)
+        {
+            <DisplayError Message="@ErrorMessage" />
+        }
+
+    </div>
+</div>

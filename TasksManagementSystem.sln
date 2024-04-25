@@ -3,16 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagementSystem.Web", "TasksManagementSystem.Web\TasksManagementSystem.Web.csproj", "{81A67684-6E87-4997-8523-4E8C8FB337A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagementSystem.Web", "TasksManagementSystem.Web\TasksManagementSystem.Web.csproj", "{81A67684-6E87-4997-8523-4E8C8FB337A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksManagementSystem.API", "TasksManagementSystem.API\TasksManagementSystem.API.csproj", "{C2A6B81F-AB00-4323-8E93-CD2160B56ACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksManagementSystem.API", "TasksManagementSystem.API\TasksManagementSystem.API.csproj", "{C2A6B81F-AB00-4323-8E93-CD2160B56ACE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE701DC4-AEB0-4F7B-98B8-41CE79CABC50}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Models", "TaskManagementSystem.Models\TaskManagementSystem.Models.csproj", "{5BE64028-2946-4F14-A228-DDC177E3964B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagementSystem.Models", "TaskManagementSystem.Models\TaskManagementSystem.Models.csproj", "{5BE64028-2946-4F14-A228-DDC177E3964B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

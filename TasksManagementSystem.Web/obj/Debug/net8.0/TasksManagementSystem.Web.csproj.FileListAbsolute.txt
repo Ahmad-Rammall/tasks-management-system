@@ -1390,3 +1390,13 @@ C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.W
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\refint\TasksManagementSystem.Web.dll
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\TasksManagementSystem.Web.pdb
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\ref\TasksManagementSystem.Web.dll
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Pages\Login\LoginPage.razor.rz.scp.css
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\bin\Debug\net8.0\wwwroot\_framework\TaskManagementSystem.Models.pdb
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\bin\Debug\net8.0\wwwroot\_framework\TaskManagementSystem.Models.wasm
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\bin\Debug\net8.0\wwwroot\_framework\TaskManagementSystem.Models.wasm.gz
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\bin\Debug\net8.0\wwwroot\_framework\TaskManagementSystem.Models.pdb.gz
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\bin\Debug\net8.0\TaskManagementSystem.Models.dll
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\bin\Debug\net8.0\TaskManagementSystem.Models.pdb
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\webcil\TaskManagementSystem.Models.wasm
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\compressed\4rkkpr9u4q.gz
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\compressed\ru69mmfxqf.gz
