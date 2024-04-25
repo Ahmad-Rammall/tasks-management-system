@@ -52,7 +52,7 @@ namespace TasksManagementSystem.API.Repositories
             var user = await _context.Users.Include(user => user.Role)
                 .FirstOrDefaultAsync(user => user.Username == userLoginDTO.Username);
 
-            if (user == null)
+            if (user == null || user.isDeleted)
                 return null;
 
             if (BCrypt.Net.BCrypt.Verify(userLoginDTO.Password, user.Password))
