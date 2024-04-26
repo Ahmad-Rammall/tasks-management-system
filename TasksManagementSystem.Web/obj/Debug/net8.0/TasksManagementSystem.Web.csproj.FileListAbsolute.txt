@@ -1404,3 +1404,4 @@ C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.W
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\ref\TasksManagementSystem.Web.dll
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Components\ProjectComponent\ProjectComponent.razor.rz.scp.css
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Pages\Comment\CommentPage.razor.rz.scp.css
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Components\CommentComponent\CommentComponent.razor.rz.scp.css

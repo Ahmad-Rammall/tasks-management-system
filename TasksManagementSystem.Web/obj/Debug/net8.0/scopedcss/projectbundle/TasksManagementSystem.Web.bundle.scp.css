@@ -1,3 +1,15 @@
+/* /Components/CommentComponent/CommentComponent.razor.rz.scp.css */
+.container[b-fjxb51uwk3] {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width:100%;
+}
+
+.fullname[b-fjxb51uwk3]{
+    color:gray;
+}
 /* /Components/ProjectComponent/ProjectComponent.razor.rz.scp.css */
 .container[b-nr9aoqcl3m] {
     background-color: #ffffff;
