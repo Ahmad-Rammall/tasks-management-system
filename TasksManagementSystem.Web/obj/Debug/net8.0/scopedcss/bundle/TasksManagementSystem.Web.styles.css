@@ -1,3 +1,58 @@
+/* /Components/TaskComponent/TaskComponent.razor.rz.scp.css */
+.task[b-mc9r7pkhsl] {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.top-row[b-mc9r7pkhsl] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-title[b-mc9r7pkhsl] {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.task-description[b-mc9r7pkhsl] {
+    color: #666666;
+    margin-bottom: 15px;
+}
+
+.task .btn[b-mc9r7pkhsl] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+    .task .btn:hover[b-mc9r7pkhsl] {
+        background-color: #0056b3;
+    }
+.completed-row[b-mc9r7pkhsl]{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+.completed[b-mc9r7pkhsl] {
+    width: 30px;
+    height: 30px;
+}
+
+.task .btn-view-comments[b-mc9r7pkhsl] {
+    background-color: #28a745;
+}
+
+    .task .btn-view-comments:hover[b-mc9r7pkhsl] {
+        background-color: #218838;
+    }
 /* /Layout/MainLayout.razor.rz.scp.css */
 .page[b-5h0oni36nd] {
     position: relative;
