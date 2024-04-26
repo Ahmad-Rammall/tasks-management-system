@@ -1,2 +1,24 @@
-body[b-umjgj9j7cd] {
+.comments[b-umjgj9j7cd] {
+    overflow-y: scroll;
+    height: 90%;
+}
+.container[b-umjgj9j7cd]{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    height:100vh;
+    padding:20px;
+}
+
+.input-row[b-umjgj9j7cd] {
+    display: flex;
+    justify-content: space-between;
+}
+
+input[b-umjgj9j7cd] {
+    width: 90%;
+    height: 40px;
+    align-self: center;
+    border-radius:10px;
+    padding:10px;
 }

@@ -5,6 +5,7 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width:100%;
+    margin-bottom: 20px;
 }
 
 .fullname[b-fjxb51uwk3]{
@@ -257,7 +258,29 @@ main[b-5h0oni36nd] {
     }
 }
 /* /Pages/Comment/CommentPage.razor.rz.scp.css */
-body[b-umjgj9j7cd] {
+.comments[b-umjgj9j7cd] {
+    overflow-y: scroll;
+    height: 90%;
+}
+.container[b-umjgj9j7cd]{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    height:100vh;
+    padding:20px;
+}
+
+.input-row[b-umjgj9j7cd] {
+    display: flex;
+    justify-content: space-between;
+}
+
+input[b-umjgj9j7cd] {
+    width: 90%;
+    height: 40px;
+    align-self: center;
+    border-radius:10px;
+    padding:10px;
 }
 /* /Pages/Login/LoginPage.razor.rz.scp.css */
 .page[b-ovwlv0ipt7] {
