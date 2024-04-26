@@ -12,5 +12,6 @@ namespace TaskManagementSystem.Models.DTOs.CommentDTOs
         public string Content { get; set; }
         public int UserId { get; set; }
         public int TaskId { get; set; }
+        public string UserFullname { get; set; }
     }
 }

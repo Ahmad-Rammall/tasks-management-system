@@ -111,12 +111,14 @@ namespace TasksManagementSystem.API.Helpers
         }
         public static CommentDTO ConvertToDto(this Comment comment)
         {
+            Console.WriteLine(comment.UserProp.FullName);
             return new CommentDTO
             {
                 Id = comment.Id,
                 Content = comment.Content,
                 UserId = comment.UserId,
-                TaskId = comment.TaskId
+                TaskId = comment.TaskId,
+                UserFullname = comment.UserProp.FullName
             };
         }
     }

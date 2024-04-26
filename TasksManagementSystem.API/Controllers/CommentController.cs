@@ -9,7 +9,7 @@ namespace TasksManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _commentRepo;
@@ -24,6 +24,7 @@ namespace TasksManagementSystem.API.Controllers
             try
             {
                 var comments = await _commentRepo.GetAllTaskComments(taskId);
+
                 if(comments == null)
                 {
                     return NotFound();
