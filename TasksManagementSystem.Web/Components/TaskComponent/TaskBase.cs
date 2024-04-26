@@ -18,6 +18,9 @@ namespace TasksManagementSystem.Web.Components.TaskComponent
 
         [Inject]
         public ITaskService _taskService {  get; set; }
+
+        [Inject]
+        public NavigationManager navigationManager { get; set; }
         public async Task SendApprovalRequest()
         {
             try
@@ -29,6 +32,10 @@ namespace TasksManagementSystem.Web.Components.TaskComponent
             {
                 ErrorMessage = ex.Message;
             }
+        }
+        public void NavigateToComments()
+        {
+            navigationManager.NavigateTo($"/comments/{TaskId}");
         }
     }
 }
