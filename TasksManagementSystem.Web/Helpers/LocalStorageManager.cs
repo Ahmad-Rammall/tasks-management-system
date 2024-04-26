@@ -8,5 +8,9 @@ namespace TasksManagementSystem.Web.Helpers
         {
             await jsRuntime.InvokeVoidAsync("localStorage.setItem", key, value);
         }
+        public static async Task<string> GetFromLocalStorage(IJSRuntime jsRuntime, string key)
+        {
+            return await jsRuntime.InvokeAsync<string>("localStorage.getItem", key);
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace TasksManagementSystem.Web.Pages.Login
                         navigationManager.NavigateTo("/adminPage");
 
                     await LocalStorageManager.SaveToLocalStorage(JSRuntime, "jwtToken", userResponse.Token);
-
+                    await LocalStorageManager.SaveToLocalStorage(JSRuntime, "userId", userResponse.User.Id.ToString());
                 }
 
             }
