@@ -4,10 +4,21 @@
     <div class="top-row">
         <h2 class="task-title">@Title</h2>
         <label class="completed-row">
-            <input type="checkbox" class="completed" @bind="IsCompleted">
+            @if (IsCompleted)
+            {
+                <input type="checkbox" class="completed" @bind="IsCompleted" disabled />
+            }
+            else
+            {
+                <input type="checkbox" class="completed" @bind="IsCompleted" @onclick="SendApprovalRequest"/>
+            }
             Completed
         </label>
     </div>
     <p class="task-description">@Description</p>
+    @if(ErrorMessage != null)
+    {
+        <div class="text-danger">@ErrorMessage</div>
+    }
     <button class="btn btn-view-comments">View Comments</button>
 </div>

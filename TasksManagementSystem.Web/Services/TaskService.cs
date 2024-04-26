@@ -38,7 +38,28 @@ namespace TasksManagementSystem.Web.Services
 
         public async Task<TaskRequestDTO> SendRequest(int taskid)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync<int>("api/Task/sendRequest", taskid);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        return default(TaskRequestDTO);
+
+                    return await response.Content.ReadFromJsonAsync<TaskRequestDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
     }
 }
