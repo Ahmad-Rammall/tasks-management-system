@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Models.DTOs.TaskDTOs;
+using TasksManagementSystem.API.Entities;
 using TasksManagementSystem.API.Helpers;
 using TasksManagementSystem.API.Repositories.Interfaces;
 

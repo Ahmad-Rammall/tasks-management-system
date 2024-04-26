@@ -17,6 +17,10 @@ namespace TasksManagementSystem.API.Repositories
         {
             return await _context.Projects.AnyAsync(p => p.Id == id);
         }
+        private async Task<bool> EmployeeExists(int employeeId)
+        {
+            return await _context.Users.AnyAsync(e => e.Id == employeeId && !e.isDeleted);
+        }
         public async Task<Project> AddProject(ProjectToAddDTO projectToAddDTO)
         {
             var newProject = new Project
@@ -68,6 +72,16 @@ namespace TasksManagementSystem.API.Repositories
             await _context.SaveChangesAsync();
 
             return newProject;
+        }
+        public async Task<IEnumerable<Project>> GetUserProjects(int employeeId)
+        {
+            if (!await EmployeeExists(employeeId))
+                return null;
+
+            return await _context.Projects
+                .Include(p => p.Tasks)
+                .Where(p => p.Tasks.Any(t => t.UserId == employeeId))
+                .ToListAsync();
         }
     }
 }

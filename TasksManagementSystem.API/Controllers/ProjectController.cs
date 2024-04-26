@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
+using TasksManagementSystem.API.Entities;
 using TasksManagementSystem.API.Helpers;
 using TasksManagementSystem.API.Repositories.Interfaces;
 
@@ -9,7 +10,7 @@ namespace TasksManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _projectRepository;
@@ -24,14 +25,34 @@ namespace TasksManagementSystem.API.Controllers
             try
             {
                 var projects = await _projectRepository.GetAllProjects();
-                if(projects == null)
+                if (projects == null)
                 {
                     return NotFound("Projects Not Found. Try Again Later.");
                 }
 
                 return Ok(projects.ConvertToDto());
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("{employeeId:int}")]
+        public async Task<ActionResult<IEnumerable<ProjectDTO>>> GetUserProjects([FromRoute] int employeeId)
+        {
+            try
+            {
+                var projects = await _projectRepository.GetUserProjects(employeeId);
+                if (projects == null)
+                {
+                    return NotFound("Error Finding Tasks");
+                }
+
+                return Ok(projects.ConvertToDto());
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -43,7 +64,7 @@ namespace TasksManagementSystem.API.Controllers
             try
             {
                 var project = await _projectRepository.AddProject(projectDTO);
-                if(project == null)
+                if (project == null)
                 {
                     return BadRequest();
                 }
@@ -58,7 +79,7 @@ namespace TasksManagementSystem.API.Controllers
 
         [HttpPut]
         [Route("{projectId:int}")]
-        public async Task<ActionResult<ProjectDTO>> UpdateProject([FromRoute] int projectId,[FromBody] ProjectToAddDTO projectDTO)
+        public async Task<ActionResult<ProjectDTO>> UpdateProject([FromRoute] int projectId, [FromBody] ProjectToAddDTO projectDTO)
         {
             try
             {
