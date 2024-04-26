@@ -3,6 +3,10 @@
 
 <h3>CommentPage</h3>
 
-<CommentComponent />
-<CommentComponent />
-<CommentComponent />
+@if(CommentsList != null)
+{
+    @foreach (var comment in CommentsList)
+    {
+        <CommentComponent Fullname="xxx xxxx" Content="@comment.Content"/>
+    }
+}
