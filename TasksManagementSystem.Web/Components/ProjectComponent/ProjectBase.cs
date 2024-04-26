@@ -16,7 +16,7 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
         public NavigationManager navigationManager { get; set; }
         public void HandleClick()
         {
-            navigationManager.NavigateTo("/");
+            navigationManager.NavigateTo($"/TasksPage/{ProjectID}");
         }
     }
 }

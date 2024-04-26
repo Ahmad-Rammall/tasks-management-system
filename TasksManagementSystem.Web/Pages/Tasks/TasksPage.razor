@@ -1,5 +1,12 @@
-﻿<h3>TasksPage</h3>
+﻿@page "/TasksPage/{ProjectId:int}"
+@inherits TasksBase
 
-@code {
+<h3>TasksPage</h3>
 
+@if (TasksList != null)
+{
+    foreach (var task in TasksList)
+    {
+        <TaskComponent Title="@task.Title" Description="@task.Description" IsCompleted="task.IsCompleted"/>
+    }
 }

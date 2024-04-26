@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using TaskManagementSystem.Models.DTOs.TaskDTOs;
+using TasksManagementSystem.Web.Services.Interfaces;
 
 namespace TasksManagementSystem.Web.Pages.Tasks
 {
@@ -6,9 +8,13 @@ namespace TasksManagementSystem.Web.Pages.Tasks
     {
         [Parameter]
         public int ProjectId { get; set; }
-        protected override Task OnInitializedAsync()
+
+        [Inject]
+        public ITaskService _taskService {  get; set; }
+        public IEnumerable<TaskDTO> TasksList { get; set; }
+        protected override async Task OnInitializedAsync()
         {
-            Console.WriteLine(ProjectId); return base.OnInitializedAsync();
+            TasksList = await _taskService.GetProjectTasks(ProjectId);
         }
     }
 }

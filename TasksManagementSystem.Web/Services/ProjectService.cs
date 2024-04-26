@@ -29,11 +29,6 @@ namespace TasksManagementSystem.Web.Services
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
 
                 var projects = await _httpClient.GetFromJsonAsync<IEnumerable<ProjectDTO>>($"api/Project/{employeeId}");
-                foreach (var p in projects)
-                {
-                    Console.WriteLine("Title : " + p.Title);
-
-                }
                 return projects;
             }
             catch (Exception ex)
