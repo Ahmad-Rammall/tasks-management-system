@@ -51,5 +51,33 @@ namespace TasksManagementSystem.Web.Services
                 throw ex;
             }
         }
+
+        public async Task<ProjectDTO> DeleteProject(int projectId)
+        {
+            try
+            {
+                string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.DeleteAsync($"api/Project/{projectId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        return default(ProjectDTO);
+
+                    return await response.Content.ReadFromJsonAsync<ProjectDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

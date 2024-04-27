@@ -9,7 +9,7 @@
     <div class="row">
         @foreach (var project in ProjectsList)
         {
-            <ProjectComponent ProjectID="@project.Id" Title="@project.Title" Description="@project.Description" />
+            <ProjectComponent ProjectID="@project.Id" Title="@project.Title" Description="@project.Description" IsAdmin="true"/>
         }
     </div>
 }

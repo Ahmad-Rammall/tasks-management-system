@@ -4,17 +4,19 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
+    position: relative;
 }
 
-.button[b-nr9aoqcl3m] {
-    background-color: #28a745;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    cursor: pointer;
+.buttons[b-nr9aoqcl3m]{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-    .button:hover[b-nr9aoqcl3m] {
-        background-color: #218838;
-    }
+.hide[b-nr9aoqcl3m]{
+    display:none;
+}
+
+.modal[b-nr9aoqcl3m]{
+    position:absolute;
+}

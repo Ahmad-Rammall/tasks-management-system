@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TasksManagementSystem.Web.Helpers;
+using TasksManagementSystem.Web.Services.Interfaces;
 
 namespace TasksManagementSystem.Web.Components.ProjectComponent
 {
@@ -15,11 +16,23 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
         [Parameter]
         public string Description { get; set; }
 
+        [Parameter]
+        public bool IsAdmin { get; set; }
+
+        [Parameter]
+        public int SelectedProjectID { get; set; }
+
+        [Parameter]
+        public bool ShowDeleteModal { get; set; }
+
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
 
         [Inject]
         public NavigationManager navigationManager { get; set; }
+
+        [Inject]
+        public IProjectService _projectService { get; set; }
         public async Task HandleClick()
         {
             var roleId = await LocalStorageManager.GetFromLocalStorage(JSRuntime, "userRole");
@@ -27,6 +40,14 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
                 navigationManager.NavigateTo($"/TasksPage/{ProjectID}");
             else
                 navigationManager.NavigateTo($"/TasksPageAdmin/{ProjectID}");
+        }
+        public async Task DeleteProject()
+        {
+            var response = await _projectService.DeleteProject(SelectedProjectID);
+            if(response != null)
+            {
+                ShowDeleteModal = false;
+            }
         }
     }
 }

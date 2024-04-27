@@ -4,17 +4,19 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
+    position: relative;
 }
 
-.button {
-    background-color: #28a745;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    cursor: pointer;
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-    .button:hover {
-        background-color: #218838;
-    }
+.hide{
+    display:none;
+}
+
+.modal{
+    position:absolute;
+}
