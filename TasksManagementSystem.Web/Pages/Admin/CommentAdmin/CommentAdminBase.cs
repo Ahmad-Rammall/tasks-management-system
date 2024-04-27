@@ -4,9 +4,9 @@ using TaskManagementSystem.Models.DTOs.CommentDTOs;
 using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services.Interfaces;
 
-namespace TasksManagementSystem.Web.Pages.Comment
+namespace TasksManagementSystem.Web.Pages.Admin.CommentAdmin
 {
-    public class CommentBase : ComponentBase
+    public class CommentAdminBase : ComponentBase
     {
         [Parameter]
         public int TaskId { get; set; }

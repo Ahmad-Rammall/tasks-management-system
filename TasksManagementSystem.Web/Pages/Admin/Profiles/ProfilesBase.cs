@@ -2,7 +2,7 @@
 using TaskManagementSystem.Models.DTOs.UserDTOs;
 using TasksManagementSystem.Web.Services.Interfaces;
 
-namespace TasksManagementSystem.Web.Pages.Profiles
+namespace TasksManagementSystem.Web.Pages.Admin.Profiles
 {
     public class ProfilesBase : ComponentBase
     {

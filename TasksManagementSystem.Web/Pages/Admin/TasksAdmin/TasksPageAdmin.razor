@@ -1,0 +1,27 @@
+﻿@page "/TasksPageAdmin/{ProjectId:int}"
+@layout AdminLayout
+@using TaskManagementSystem.Models.DTOs.TaskDTOs
+@using TasksManagementSystem.Web.Services.Interfaces
+
+<h3>TasksPage</h3>
+
+@if (TasksList != null)
+{
+    foreach (var task in TasksList)
+    {
+        <TaskComponent TaskId="@task.Id" Title="@task.Title" Description="@task.Description" IsCompleted="task.IsCompleted" />
+    }
+}
+
+@code {
+    [Parameter]
+    public int ProjectId { get; set; }
+
+    [Inject]
+    public ITaskService _taskService { get; set; }
+    public IEnumerable<TaskDTO> TasksList { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        TasksList = await _taskService.GetProjectTasks(ProjectId);
+    }
+}

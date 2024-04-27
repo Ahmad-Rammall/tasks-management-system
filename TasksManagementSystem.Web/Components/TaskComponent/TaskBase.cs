@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services.Interfaces;
 
 namespace TasksManagementSystem.Web.Components.TaskComponent
@@ -21,6 +23,9 @@ namespace TasksManagementSystem.Web.Components.TaskComponent
 
         [Inject]
         public NavigationManager navigationManager { get; set; }
+
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
         public async Task SendApprovalRequest()
         {
             try
@@ -33,9 +38,14 @@ namespace TasksManagementSystem.Web.Components.TaskComponent
                 ErrorMessage = ex.Message;
             }
         }
-        public void NavigateToComments()
+        public async Task NavigateToComments()
         {
             navigationManager.NavigateTo($"/comments/{TaskId}");
+            var roleId = await LocalStorageManager.GetFromLocalStorage(JSRuntime, "userRole");
+            if (int.Parse(roleId) == 2)
+                navigationManager.NavigateTo($"/comments/{TaskId}");
+            else
+                navigationManager.NavigateTo($"/commentsAdmin/{TaskId}");
         }
     }
 }

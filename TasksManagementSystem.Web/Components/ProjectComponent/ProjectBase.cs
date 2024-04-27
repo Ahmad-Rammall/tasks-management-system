@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using TasksManagementSystem.Web.Helpers;
 
 namespace TasksManagementSystem.Web.Components.ProjectComponent
 {
@@ -12,11 +14,19 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
 
         [Parameter]
         public string Description { get; set; }
+
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         public NavigationManager navigationManager { get; set; }
-        public void HandleClick()
+        public async Task HandleClick()
         {
-            navigationManager.NavigateTo($"/TasksPage/{ProjectID}");
+            var roleId = await LocalStorageManager.GetFromLocalStorage(JSRuntime, "userRole");
+            if(int.Parse(roleId) == 2)
+                navigationManager.NavigateTo($"/TasksPage/{ProjectID}");
+            else
+                navigationManager.NavigateTo($"/TasksPageAdmin/{ProjectID}");
         }
     }
 }

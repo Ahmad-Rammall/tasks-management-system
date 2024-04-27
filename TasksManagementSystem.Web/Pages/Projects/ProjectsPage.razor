@@ -1,8 +1,19 @@
 ﻿@page "/projects"
 @layout AdminLayout
+@inherits ProjectsBase
 
 <h3>ProjectsPage</h3>
 
-@code {
-
+@if (ProjectsList != null && ProjectsList.Count() > 0)
+{
+    <div class="row">
+        @foreach (var project in ProjectsList)
+        {
+            <ProjectComponent ProjectID="@project.Id" Title="@project.Title" Description="@project.Description" />
+        }
+    </div>
+}
+else
+{
+    <div>No Projects Yet!</div>
 }

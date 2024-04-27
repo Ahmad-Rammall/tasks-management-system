@@ -36,5 +36,20 @@ namespace TasksManagementSystem.Web.Services
                 throw ex;
             }
         }
+        public async Task<IEnumerable<ProjectDTO>> GetAllProjects()
+        {
+            try
+            {
+                string jwtToken = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+
+                var projects = await _httpClient.GetFromJsonAsync<IEnumerable<ProjectDTO>>($"api/Project");
+                return projects;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -1,0 +1,25 @@
+.comments[b-hzvgg6vwqr] {
+    overflow-y: scroll;
+    height: 90%;
+}
+
+.container[b-hzvgg6vwqr] {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 20px;
+}
+
+.input-row[b-hzvgg6vwqr] {
+    display: flex;
+    justify-content: space-between;
+}
+
+input[b-hzvgg6vwqr] {
+    width: 90%;
+    height: 40px;
+    align-self: center;
+    border-radius: 10px;
+    padding: 10px;
+}

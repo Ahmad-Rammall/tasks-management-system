@@ -1,0 +1,19 @@
+﻿@page "/commentsAdmin/{TaskId:int}"
+@inherits CommentAdminBase
+@layout AdminLayout
+
+<div class="container">
+    <div class="comments">
+        @if (CommentsList != null)
+        {
+            @foreach (var comment in CommentsList)
+            {
+                <CommentComponent Fullname="xxx xxxx" Content="@comment.Content" />
+            }
+        }
+    </div>
+    <div class="input-row">
+        <input type="text" placeholder="Enter Your Comment" @bind="CommentContent" />
+        <button class="btn btn-primary" @onclick="SendComment">Send</button>
+    </div>
+</div>

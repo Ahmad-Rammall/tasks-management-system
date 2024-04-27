@@ -14,6 +14,7 @@ namespace TaskManagementSystem.Models.DTOs.UserDTOs
         public string FullName { get; set; }
         public string Username { get; set; }
         public string RoleName { get; set; }
+        public int RoleId { get; set; }
         public bool IsDeleted { get; set; }
     }
 }
