@@ -95,13 +95,6 @@
     flex-direction: column;
 }
 
-*[b-tphk5n53y9] {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-}
-
 main[b-tphk5n53y9] {
     flex: 1;
 }
@@ -416,6 +409,12 @@ h2[b-ovwlv0ipt7] {
     .submit-btn:hover[b-ovwlv0ipt7] {
         background-color: #0056b3;
     }
+/* /Pages/Profiles/ProfilesPage.razor.rz.scp.css */
+body[b-0jjdxwwil3] {
+}
+/* /Pages/Projects/ProjectsPage.razor.rz.scp.css */
+body[b-ccano2k6pg] {
+}
 /* /Pages/Register/RegisterPage.razor.rz.scp.css */
 .page[b-jx3g2bi2zq] {
     margin: 0;
@@ -464,3 +463,6 @@ h2[b-jx3g2bi2zq] {
     .submit-btn:hover[b-jx3g2bi2zq] {
         background-color: #0056b3;
     }
+/* /Pages/Requests/RequestsPage.razor.rz.scp.css */
+body[b-0mq5klraj6] {
+}

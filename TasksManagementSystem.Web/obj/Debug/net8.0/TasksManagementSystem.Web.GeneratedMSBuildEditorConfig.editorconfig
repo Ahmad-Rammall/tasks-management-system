@@ -78,6 +78,18 @@ build_metadata.AdditionalFiles.CssScope = b-umjgj9j7cd
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cTG9naW5QYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-ovwlv0ipt7
 
+[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Profiles/ProfilesPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZXNcUHJvZmlsZXNQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-0jjdxwwil3
+
+[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Projects/ProjectsPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHNcUHJvamVjdHNQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-ccano2k6pg
+
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Register/RegisterPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXJcUmVnaXN0ZXJQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-jx3g2bi2zq
+
+[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Requests/RequestsPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVxdWVzdHNcUmVxdWVzdHNQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-0mq5klraj6
