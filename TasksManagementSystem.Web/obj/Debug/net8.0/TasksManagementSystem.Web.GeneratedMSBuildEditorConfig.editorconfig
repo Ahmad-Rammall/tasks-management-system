@@ -30,10 +30,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXNwbGF5RXJyb3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Admin/AdminPage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRtaW5QYWdlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Employee/EmployeePage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVcRW1wbG95ZWVQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope = b-nr9aoqcl3m
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUYXNrQ29tcG9uZW50XFRhc2tDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-mc9r7pkhsl
 
+[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Layout/AdminLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XEFkbWluTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-tphk5n53y9
+
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-5h0oni36nd
@@ -65,6 +65,10 @@ build_metadata.AdditionalFiles.CssScope = b-5h0oni36nd
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-j8jl6luw5n
+
+[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Admin/AdminPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRtaW5QYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-9pxqx4ht3s
 
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Comment/CommentPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tbWVudFxDb21tZW50UGFnZS5yYXpvcg==
