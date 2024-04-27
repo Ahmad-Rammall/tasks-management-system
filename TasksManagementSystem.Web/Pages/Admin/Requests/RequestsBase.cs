@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace TasksManagementSystem.Web.Pages.Requests
+namespace TasksManagementSystem.Web.Pages.Admin.Requests
 {
     public class RequestsBase : ComponentBase
     {

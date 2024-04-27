@@ -1408,5 +1408,6 @@ C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.W
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Pages\Admin\AdminPage.razor.rz.scp.css
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Layout\AdminLayout.razor.rz.scp.css
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Pages\Projects\ProjectsPage.razor.rz.scp.css
-C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Pages\Requests\RequestsPage.razor.rz.scp.css
 C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Pages\Admin\Profiles\ProfilesPage.razor.rz.scp.css
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Pages\Admin\CommentAdmin\CommentPageAdmin.razor.rz.scp.css
+C:\Users\thinkpad\Desktop\projects\TasksManagementSystem\TasksManagementSystem.Web\obj\Debug\net8.0\scopedcss\Pages\Admin\Requests\RequestsPage.razor.rz.scp.css

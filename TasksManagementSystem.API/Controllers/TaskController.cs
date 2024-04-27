@@ -99,8 +99,8 @@ namespace TasksManagementSystem.API.Controllers
         }
 
         [HttpPut]
-        [Route("rejectRequest/{requestId:int}")]
-        public async Task<ActionResult<TaskRequestDTO>> RejectRequest([FromRoute] int requestId)
+        [Route("rejectRequest")]
+        public async Task<ActionResult<TaskRequestDTO>> RejectRequest([FromBody] int requestId)
         {
             try
             {

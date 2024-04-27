@@ -6,5 +6,8 @@ namespace TasksManagementSystem.Web.Services.Interfaces
     {
         Task<IEnumerable<TaskDTO>> GetProjectTasks(int projectId);
         Task<TaskRequestDTO> SendRequest(int taskid);
+        Task<TaskRequestDTO> AcceptRequest(int requestId);
+        Task<TaskRequestDTO> RejectRequest(int requestId);
+
     }
 }

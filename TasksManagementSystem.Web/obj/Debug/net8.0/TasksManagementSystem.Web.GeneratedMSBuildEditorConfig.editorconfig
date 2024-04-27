@@ -82,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope = b-hzvgg6vwqr
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZmlsZXNcUHJvZmlsZXNQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-1uh7jzw6no
 
+[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Admin/Requests/RequestsPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVxdWVzdHNcUmVxdWVzdHNQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-evn778fe4r
+
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Comment/CommentPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tbWVudFxDb21tZW50UGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-umjgj9j7cd
@@ -97,7 +101,3 @@ build_metadata.AdditionalFiles.CssScope = b-ccano2k6pg
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Register/RegisterPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXJcUmVnaXN0ZXJQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-jx3g2bi2zq
-
-[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Requests/RequestsPage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVxdWVzdHNcUmVxdWVzdHNQYWdlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-0mq5klraj6

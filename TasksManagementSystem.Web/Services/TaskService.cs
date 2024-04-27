@@ -20,6 +20,34 @@ namespace TasksManagementSystem.Web.Services
             _jsRuntime = jSRuntime;
             _httpClient = httpClient;
         }
+
+        public async Task<TaskRequestDTO> AcceptRequest(int requestId)
+        {
+            try
+            {
+                string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.DeleteAsync($"api/Task/{requestId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        return default(TaskRequestDTO);
+
+                    return await response.Content.ReadFromJsonAsync<TaskRequestDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<IEnumerable<TaskDTO>> GetProjectTasks(int projectId)
         {
             try
@@ -29,6 +57,33 @@ namespace TasksManagementSystem.Web.Services
 
                 var tasks = await _httpClient.GetFromJsonAsync<IEnumerable<TaskDTO>>($"api/Task/{projectId}");
                 return tasks;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<TaskRequestDTO> RejectRequest(int requestId)
+        {
+            try
+            {
+                string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.PutAsJsonAsync($"api/rejectRequest/", requestId);
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                        return default(TaskRequestDTO);
+
+                    return await response.Content.ReadFromJsonAsync<TaskRequestDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
             }
             catch (Exception ex)
             {
