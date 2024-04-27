@@ -99,6 +99,17 @@ namespace TasksManagementSystem.API.Helpers
                 IsApproved = request.IsApproved
             };
         }
+        public static IEnumerable<TaskRequestDTO> ConvertToDto(this IEnumerable<TaskApprovalRequest> requests)
+        {
+            List<TaskRequestDTO> requestsList = requests.Select(request =>
+                new TaskRequestDTO
+                {
+                    Id = request.Id,
+                    TaskId = request.TaskId,
+                    IsApproved = request.IsApproved
+                }).ToList();
+            return requestsList;
+        }
         public static IEnumerable<CommentDTO> ConvertToDto(this IEnumerable<Comment> comments)
         {
 

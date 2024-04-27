@@ -6,6 +6,7 @@ namespace TasksManagementSystem.API.Repositories.Interfaces
     public interface ITaskRepository
     {
         Task<IEnumerable<TaskEntity>> GetProjectTasks(int projectId);
+        Task<IEnumerable<TaskApprovalRequest>> GetAllRequests();
         Task<TaskEntity> AddTaskToEmployee(TaskToAddDTO taskToAddDTO);
         Task<TaskApprovalRequest> SendApprovalRequest(int taskId);
         Task<TaskApprovalRequest> AcceptRequest(int requestId);

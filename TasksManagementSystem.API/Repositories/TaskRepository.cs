@@ -133,5 +133,10 @@ namespace TasksManagementSystem.API.Repositories
             return newRequest;
 
         }
+
+        public async Task<IEnumerable<TaskApprovalRequest>> GetAllRequests()
+        {
+            return await _context.TaskApprovalRequests.ToListAsync();
+        }
     }
 }

@@ -38,6 +38,26 @@ namespace TasksManagementSystem.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("requests")]
+        public async Task<ActionResult<IEnumerable<TaskDTO>>> GetAllRequests()
+        {
+            try
+            {
+                var requests = await _taskRepo.GetAllRequests();
+                if (requests == null)
+                {
+                    return NotFound("Error Finding Tasks");
+                }
+
+                return Ok(requests.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult<TaskDTO>> AddTaskToEmployee(TaskToAddDTO taskToAddDTO)
         {
