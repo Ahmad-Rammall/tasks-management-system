@@ -19,6 +19,7 @@ namespace TasksManagementSystem.API.Helpers
                 FullName = user.FullName,
                 Username = user.Username,
                 RoleName = user.Role.RoleName,
+                IsDeleted = user.isDeleted
             };
         }
         public static LoginResponseDTO ConvertToDto(this User user, string token)
@@ -39,6 +40,7 @@ namespace TasksManagementSystem.API.Helpers
                     FullName = user.FullName,
                     Username = user.Username,
                     RoleName = "User",
+                    IsDeleted = user.isDeleted
                 }).ToList();
 
             return userDTOs;
