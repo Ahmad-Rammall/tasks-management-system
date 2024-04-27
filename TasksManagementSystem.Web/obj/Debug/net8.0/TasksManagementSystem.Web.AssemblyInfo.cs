@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TasksManagementSystem.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43ec22576f77763ae7b0a26877026fb762e120b8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e81b55c7549fb6f2e78f62cea9c802e61504371e")]
 [assembly: System.Reflection.AssemblyProductAttribute("TasksManagementSystem.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TasksManagementSystem.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
