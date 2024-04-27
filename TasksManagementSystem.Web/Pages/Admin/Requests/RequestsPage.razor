@@ -22,8 +22,19 @@
                     <td>@request.TaskId</td>
                     <td>@request.IsApproved</td>
                     <td>
-                        <button class="btn btn-success">Accept</button>
-                        <button class="btn btn-danger">Reject</button>
+                        <button class="btn btn-success" @onclick="()=>{
+                            SelectedRequestId=request.Id;
+                            ShowAcceptModal=true;
+                            Console.WriteLine(SelectedRequestId);
+                        }">
+                            Accept
+                        </button>
+                        <button class="btn btn-danger" @onclick="()=>{
+                            SelectedRequestId=request.Id;
+                            ShowRejectModal=true;
+                        }">
+                            Reject
+                        </button>
                     </td>
                 </tr>
             }
@@ -34,3 +45,42 @@ else
 {
     <div>No Employees Yet!</div>
 }
+
+@* Accept Modal *@
+<div class="modal-dialog modal-dialog-centered @(!ShowAcceptModal ? "hide" : "")" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Accept Request</h5>
+                <button type="button" class="btn-close" @onclick="() => ShowAcceptModal=false" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to accept this request?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @onclick="() => ShowAcceptModal=false">Dismiss</button>
+                <button type="button" class="btn btn-success" @onclick="AcceptRequest">Accept</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Reject Modal *@
+<div class="modal-dialog modal-dialog-centered @(!ShowRejectModal ? "hide" : "")" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reject Request</h5>
+                <button type="button" class="btn-close" @onclick="() => ShowRejectModal=false" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to reject this request?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @onclick="() => ShowRejectModal=false">Dismiss</button>
+                <button type="button" class="btn btn-success" @onclick="RejectRequest">Accept</button>
+            </div>
+        </div>
+    </div>
+</div>
+

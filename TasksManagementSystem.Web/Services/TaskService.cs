@@ -28,7 +28,7 @@ namespace TasksManagementSystem.Web.Services
                 string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var response = await _httpClient.DeleteAsync($"api/Task/{requestId}");
+                var response = await _httpClient.DeleteAsync($"api/Task/acceptRequest/{requestId}");
                 if (response.IsSuccessStatusCode)
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
@@ -87,7 +87,7 @@ namespace TasksManagementSystem.Web.Services
                 string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var response = await _httpClient.PutAsJsonAsync($"api/rejectRequest/", requestId);
+                var response = await _httpClient.PutAsJsonAsync($"api/task/rejectRequest/", requestId);
                 if (response.IsSuccessStatusCode)
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
