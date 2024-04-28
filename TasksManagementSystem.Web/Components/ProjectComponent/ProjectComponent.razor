@@ -1,16 +1,18 @@
 ﻿@inherits ProjectBase
 
-<div class="container col-md-5 m-3">
+<div class="projects-container mb-3">
     <h3 class="title">@Title</h3>
     <p class="title">@Description</p>
     <div class="buttons">
         <button class="btn btn-info" @onclick="HandleClick">My Tasks</button>
         @if (IsAdmin)
         {
+            <button class="btn btn-primary" @onclick="()=>ShowDeleteModal=true">Update</button>
             <button class="btn btn-danger" @onclick="()=>ShowDeleteModal=true">Delete</button>
         }
     </div>
 </div>
+
 
 
 @* Accept Modal *@
@@ -18,15 +20,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Accept Request</h5>
+                <h5 class="modal-title">Delete Project</h5>
                 <button type="button" class="btn-close" @onclick="() => ShowDeleteModal=false" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to accept this request?</p>
+                <p>Are you sure you want to delete this project?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" @onclick="() => ShowDeleteModal=false">Dismiss</button>
-                <button type="button" class="btn btn-success" @onclick="DeleteProject">Accept</button>
+                <button type="button" class="btn btn-danger" @onclick="DeleteProject">Accept</button>
             </div>
         </div>
     </div>

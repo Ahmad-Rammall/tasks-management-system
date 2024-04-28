@@ -7,6 +7,8 @@ namespace TasksManagementSystem.Web.Services.Interfaces
         Task<IEnumerable<ProjectDTO>> GetEmployeeProjects(int employeeId);
         Task<IEnumerable<ProjectDTO>> GetAllProjects();
         Task<ProjectDTO> DeleteProject(int projectId);
+        Task<ProjectDTO> UpdateProject(int projectId, ProjectToAddDTO projectDTO);
+        Task<ProjectDTO> AddProject(ProjectToAddDTO projectDTO);
 
     }
 }

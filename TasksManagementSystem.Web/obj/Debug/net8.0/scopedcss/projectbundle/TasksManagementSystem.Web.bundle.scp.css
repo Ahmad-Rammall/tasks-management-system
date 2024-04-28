@@ -12,7 +12,7 @@
     color:gray;
 }
 /* /Components/ProjectComponent/ProjectComponent.razor.rz.scp.css */
-.container[b-nr9aoqcl3m] {
+.projects-container[b-nr9aoqcl3m] {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -27,12 +27,9 @@
     align-items:center;
 }
 
-.hide[b-nr9aoqcl3m]{
-    display:none;
-}
 
-.modal[b-nr9aoqcl3m]{
-    position:absolute;
+.hide[b-nr9aoqcl3m] {
+    display: none;
 }
 /* /Components/TaskComponent/TaskComponent.razor.rz.scp.css */
 .task[b-mc9r7pkhsl] {
@@ -448,6 +445,14 @@ h2[b-ovwlv0ipt7] {
     }
 /* /Pages/Projects/ProjectsPage.razor.rz.scp.css */
 body[b-ccano2k6pg] {
+}
+
+.page[b-ccano2k6pg] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
 }
 /* /Pages/Register/RegisterPage.razor.rz.scp.css */
 .page[b-jx3g2bi2zq] {

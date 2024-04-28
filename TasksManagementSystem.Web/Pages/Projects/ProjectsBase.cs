@@ -6,10 +6,16 @@ namespace TasksManagementSystem.Web.Pages.Projects
 {
     public class ProjectsBase : ComponentBase
     {
-        public IEnumerable<ProjectDTO> ProjectsList {  get; set; }
+        public IEnumerable<ProjectDTO> ProjectsList { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ErrorMessage { get; set; }
 
         [Inject]
         public IProjectService _projectService { get; set; }
+
+        [Inject]
+        public NavigationManager navigationManager { get; set; }
         protected override async Task OnInitializedAsync()
         {
             try
@@ -21,5 +27,26 @@ namespace TasksManagementSystem.Web.Pages.Projects
                 throw ex;
             }
         }
+        public async Task AddProject()
+        {
+            try
+            {
+                ProjectToAddDTO projectToAddDTO = new ProjectToAddDTO
+                {
+                    Title = Title,
+                    Description = Description
+                };
+                var response = await _projectService.AddProject(projectToAddDTO);
+                if (response != null)
+                {
+                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
+
     }
 }

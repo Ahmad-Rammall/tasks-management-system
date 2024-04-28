@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using TaskManagementSystem.Models.DTOs.ProjectDTOs;
 using TasksManagementSystem.Web.Helpers;
+using TasksManagementSystem.Web.Pages.Projects;
 using TasksManagementSystem.Web.Services.Interfaces;
 
 namespace TasksManagementSystem.Web.Components.ProjectComponent
 {
-    public class ProjectBase : ComponentBase
+    public class ProjectBase : ProjectsBase
     {
         [Parameter]
         public int ProjectID { get; set; }
@@ -18,9 +20,6 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
 
         [Parameter]
         public bool IsAdmin { get; set; }
-
-        [Parameter]
-        public int SelectedProjectID { get; set; }
 
         [Parameter]
         public bool ShowDeleteModal { get; set; }
@@ -43,11 +42,13 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
         }
         public async Task DeleteProject()
         {
-            var response = await _projectService.DeleteProject(SelectedProjectID);
-            if(response != null)
+            var response = await _projectService.DeleteProject(ProjectID);
+            if (response != null)
             {
                 ShowDeleteModal = false;
+                navigationManager.NavigateTo(navigationManager.Uri, forceLoad:true);
             }
         }
+        
     }
 }

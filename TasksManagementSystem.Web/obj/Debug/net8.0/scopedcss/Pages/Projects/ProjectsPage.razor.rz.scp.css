@@ -1,2 +1,10 @@
 body[b-ccano2k6pg] {
 }
+
+.page[b-ccano2k6pg] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}

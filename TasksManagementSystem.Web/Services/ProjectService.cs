@@ -79,5 +79,61 @@ namespace TasksManagementSystem.Web.Services
                 throw ex;
             }
         }
+
+        public async Task<ProjectDTO> UpdateProject(int projectId, ProjectToAddDTO projectDTO)
+        {
+            try
+            {
+                string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.PutAsJsonAsync<ProjectToAddDTO>($"api/Project/{projectId}", projectDTO);
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        return default(ProjectDTO);
+
+                    return await response.Content.ReadFromJsonAsync<ProjectDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<ProjectDTO> AddProject(ProjectToAddDTO projectDTO)
+        {
+            try
+            {
+                string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.PostAsJsonAsync<ProjectToAddDTO>($"api/Project/", projectDTO);
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        return default(ProjectDTO);
+
+                    return await response.Content.ReadFromJsonAsync<ProjectDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
