@@ -7,8 +7,8 @@ namespace TasksManagementSystem.Web.Pages.Projects
     public class ProjectsBase : ComponentBase
     {
         public IEnumerable<ProjectDTO> ProjectsList { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string TitleToAdd { get; set; }
+        public string DescriptionToAdd { get; set; }
         public string ErrorMessage { get; set; }
 
         [Inject]
@@ -33,8 +33,8 @@ namespace TasksManagementSystem.Web.Pages.Projects
             {
                 ProjectToAddDTO projectToAddDTO = new ProjectToAddDTO
                 {
-                    Title = Title,
-                    Description = Description
+                    Title = TitleToAdd,
+                    Description = DescriptionToAdd
                 };
                 var response = await _projectService.AddProject(projectToAddDTO);
                 if (response != null)

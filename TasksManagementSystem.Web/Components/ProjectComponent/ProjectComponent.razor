@@ -7,7 +7,7 @@
         <button class="btn btn-info" @onclick="HandleClick">My Tasks</button>
         @if (IsAdmin)
         {
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateProjectModal">Update</button>
+            <button class="btn btn-primary" @onclick="()=>ShowUpdateModal=true">Update</button>
             <button class="btn btn-danger" @onclick="()=>ShowDeleteModal=true">Delete</button>
         }
     </div>
@@ -35,8 +35,34 @@
 </div>
 
 @* Update Component *@
-
-<div class="modal fade" id="updateProjectModal" tabindex="-1" aria-labelledby="updateProjectModal" aria-hidden="false">
+<div class="modal @(!ShowUpdateModal ? "hide" : "") modal-dialog-centered" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Project</h5>
+                <button type="button" class="btn-close" @onclick="() => ShowUpdateModal=false" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Project Title:</label>
+                        <input type="text" class="form-control" @bind="Title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Task Description:</label>
+                        <textarea class="form-control" @bind="Description"></textarea>
+                    </div>
+                    <div class="text-danger">@ErrorMessage</div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @onclick="() => ShowUpdateModal=false">Dismiss</button>
+                <button type="button" class="btn btn-primary" @onclick="UpdateProject">Accept</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* <div class="modal fade" id="updateProjectModal" aria-labelledby="updateProjectModal" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -58,8 +84,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" @onclick="UpdateProject">Add Task</button>
+                <button type="button" class="btn btn-primary" @onclick="UpdateProject">Update Task</button>
             </div>
         </div>
     </div>
 </div>
+ *@

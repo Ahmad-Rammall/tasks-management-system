@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "TasksManagementSystem.Web",
   "resources": {
-    "hash": "sha256-NiS2IUdFvPt03SXH/DM/1DvnXUmywzN8eNsMfObVzPI=",
+    "hash": "sha256-NpbDomBuCKa+fbaIT09jlEz7sFDTifyftvzyeeTyrHc=",
     "jsModuleNative": {
       "dotnet.native.8.0.3.n9emq67i9p.js": "sha256-D4sYBYmDfH/YekgYRgX959/2RG6k28sJSHmcsn+iikk="
     },
@@ -229,11 +229,11 @@
       "netstandard.wasm": "sha256-vuFKmCGJbyv85DrzI6S1ZvCikuhIllH6hqbXIL+fUAA=",
       "System.Private.CoreLib.wasm": "sha256-SZkozEDkHEFN0VaDmhl2HOenGaqTOmHqEGkraz3Aejc=",
       "TaskManagementSystem.Models.wasm": "sha256-X5aAa3ACb4/IsURDhqPlG/s0xuuoLQrINXOO/1oGq4I=",
-      "TasksManagementSystem.Web.wasm": "sha256-pa+jKg1lWDplzRN3CqpYxi8oEfqJ36uR8IPxRkBPyeE="
+      "TasksManagementSystem.Web.wasm": "sha256-2SBuy0t3Ox5nsr96dayWreNu8eXTITVYL1tM1WQbfj4="
     },
     "pdb": {
       "TaskManagementSystem.Models.pdb": "sha256-z2ryiq/m3HcqRCQlICw+Lxr7BBOXLSidV4JRkfvp6Rs=",
-      "TasksManagementSystem.Web.pdb": "sha256-9YZBzwuX27guqjR6QdkwqB2E+fMs0wP6oGxsTlHsHPU="
+      "TasksManagementSystem.Web.pdb": "sha256-Lv63c0No6UpE+rKjNgTKuK7DzmIATDYGp5+nBjNK0+c="
     },
     "satelliteResources": {
       "cs": {

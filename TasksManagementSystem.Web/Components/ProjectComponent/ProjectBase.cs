@@ -22,7 +22,10 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
         public bool IsAdmin { get; set; }
 
         [Parameter]
-        public bool ShowDeleteModal { get; set; }
+        public bool ShowDeleteModal { get; set; } = false;
+
+        [Parameter]
+        public bool ShowUpdateModal { get; set; } = false;
 
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
@@ -42,12 +45,14 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
         }
         public async Task DeleteProject()
         {
-            var response = await _projectService.DeleteProject(ProjectID);
-            if (response != null)
-            {
-                ShowDeleteModal = false;
-                navigationManager.NavigateTo(navigationManager.Uri, forceLoad:true);
-            }
+            Console.WriteLine(ProjectID);
+
+            //var response = await _projectService.DeleteProject(ProjectID);
+            //if (response != null)
+            //{
+            //    ShowDeleteModal = false;
+            //    navigationManager.NavigateTo(navigationManager.Uri, forceLoad:true);
+            //}
         }
 
         public async Task UpdateProject()
@@ -59,12 +64,12 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
                     Title = Title,
                     Description = Description
                 };
-                Console.WriteLine(projectToAddDTO.Title);
-                var response = await _projectService.UpdateProject(ProjectID, projectToAddDTO);
-                if (response != null)
-                {
-                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-                }
+                Console.WriteLine(ProjectID);
+                //var response = await _projectService.UpdateProject(ProjectID, projectToAddDTO);
+                //if (response != null)
+                //{
+                //    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                //}
             }
             catch (Exception ex)
             {
