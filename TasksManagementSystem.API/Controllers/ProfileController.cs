@@ -47,7 +47,7 @@ namespace TasksManagementSystem.API.Controllers
                 var user = await _profileRepository.DeleteEmployee(userId);
                 if(user == null)
                 {
-                    return NotFound("User Not Found!");
+                    return NotFound("User Not Found or Deleted!");
                 }
 
                 return Ok(user.ConvertToDto());
@@ -82,6 +82,24 @@ namespace TasksManagementSystem.API.Controllers
             try
             {
                 var user = await _profileRepository.UpdateEmployee(employeeId, userUpdateDTO);
+                if (user == null)
+                    return NotFound("User Doesnt Exist");
+
+                return Ok(user.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpPut]
+        [Route("updateWP/{employeeId:int}")]
+        public async Task<ActionResult<UserDTO>> UpdateEmployeeWP([FromRoute] int employeeId, [FromBody] UserUpdateWithoutPassDTO userUpdateDTO)
+        {
+            try
+            {
+                var user = await _profileRepository.UpdateEmployeeWithoutPass(employeeId, userUpdateDTO);
                 if (user == null)
                     return NotFound("User Doesnt Exist");
 

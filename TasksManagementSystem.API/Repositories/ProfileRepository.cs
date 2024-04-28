@@ -86,7 +86,6 @@ namespace TasksManagementSystem.API.Repositories
             user.Username = userUpdateDTO.Username;
             user.Password = hashedPassword;
             user.FullName = userUpdateDTO.FullName;
-            user.RoleId = userUpdateDTO.RoleId;
             user.isDeleted = userUpdateDTO.IsDeleted;
 
             _context.Entry(user).State = EntityState.Modified;
@@ -94,6 +93,25 @@ namespace TasksManagementSystem.API.Repositories
 
             return user;
 
+        }
+
+        public async Task<User> UpdateEmployeeWithoutPass(int employeeId, UserUpdateWithoutPassDTO userUpdateDTO)
+        {
+            var user = await _context.Users.FindAsync(employeeId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            user.Username = userUpdateDTO.Username;
+            user.FullName = userUpdateDTO.FullName;
+            user.isDeleted = userUpdateDTO.IsDeleted;
+
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return user;
         }
     }
 }

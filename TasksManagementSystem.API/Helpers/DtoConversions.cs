@@ -19,7 +19,6 @@ namespace TasksManagementSystem.API.Helpers
                 FullName = user.FullName,
                 Username = user.Username,
                 RoleId = user.RoleId,
-                RoleName = user.Role.RoleName,
                 IsDeleted = user.isDeleted,
             };
         }

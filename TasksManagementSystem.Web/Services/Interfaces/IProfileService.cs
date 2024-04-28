@@ -10,5 +10,7 @@ namespace TasksManagementSystem.Web.Services.Interfaces
         Task<UserDTO> DeleteUser(int userId);
         Task<UserDTO> AddEmployee(UserRegisterDTO userRegisterDTO);
         Task<UserDTO> UpdateEmployee(int employeeId, UserUpdateDTO userUpdateDTO);
+        Task<UserDTO> UpdateEmployeeWP(int employeeId, UserUpdateWithoutPassDTO userUpdateDTO);
+
     }
 }

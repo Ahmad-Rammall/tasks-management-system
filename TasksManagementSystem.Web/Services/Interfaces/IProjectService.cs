@@ -1,4 +1,5 @@
 ﻿using TaskManagementSystem.Models.DTOs.ProjectDTOs;
+using TaskManagementSystem.Models.DTOs.UserDTOs;
 
 namespace TasksManagementSystem.Web.Services.Interfaces
 {
@@ -9,6 +10,5 @@ namespace TasksManagementSystem.Web.Services.Interfaces
         Task<ProjectDTO> DeleteProject(int projectId);
         Task<ProjectDTO> UpdateProject(int projectId, ProjectToAddDTO projectDTO);
         Task<ProjectDTO> AddProject(ProjectToAddDTO projectDTO);
-
     }
 }

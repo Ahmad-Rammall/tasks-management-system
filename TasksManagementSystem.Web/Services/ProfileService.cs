@@ -119,5 +119,33 @@ namespace TasksManagementSystem.Web.Services
                 throw ex;
             }
         }
+
+        public async Task<UserDTO> UpdateEmployeeWP(int employeeId, UserUpdateWithoutPassDTO userUpdateDTO)
+        {
+            try
+            {
+                string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.PutAsJsonAsync<UserUpdateWithoutPassDTO>($"api/Profile/updateWP/{employeeId}", userUpdateDTO);
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        return default(UserDTO);
+
+                    return await response.Content.ReadFromJsonAsync<UserDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

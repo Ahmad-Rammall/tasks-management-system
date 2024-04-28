@@ -12,6 +12,8 @@ namespace TasksManagementSystem.Web.Components.ProfileComponent
         [Parameter]
         public bool IsDeleted { get; set; }
         public string ErrorMessage { get; set; }
+        public string Password { get; set; }
+
         public bool ShowDeleteModal { get; set; } = false;
         public bool ShowUpdateModal { get; set; } = false;
 
@@ -36,9 +38,31 @@ namespace TasksManagementSystem.Web.Components.ProfileComponent
         {
             try
             {
-                Console.WriteLine(Employee.Id);
-                //await _profileService.DeleteUser(Employee.Id);
-                //navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                if (string.IsNullOrWhiteSpace(Password))
+                {
+                    UserUpdateWithoutPassDTO userDto = new UserUpdateWithoutPassDTO
+                    {
+                        FullName = Employee.FullName,
+                        Username = Employee.Username,
+                        IsDeleted = Employee.IsDeleted,
+                    };
+                    await _profileService.UpdateEmployeeWP(Employee.Id, userDto);
+                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                }
+                else
+                {
+                    Console.WriteLine(Employee.Id);
+                    UserUpdateDTO userDto = new UserUpdateDTO
+                    {
+                        FullName = Employee.FullName,
+                        Username = Employee.Username,
+                        IsDeleted = Employee.IsDeleted,
+                        Password = Password
+                    };
+                    await _profileService.UpdateEmployee(Employee.Id, userDto);
+                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                }
+                
             }
             catch (Exception ex)
             {

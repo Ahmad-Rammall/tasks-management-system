@@ -9,6 +9,7 @@ namespace TasksManagementSystem.API.Repositories.Interfaces
         Task<IEnumerable<User>> GetAllEmployees();
         Task<User> AddEmployee(UserRegisterDTO userRegisterDTO);
         Task<User> UpdateEmployee(int employeeId, UserUpdateDTO userUpdateDTO);
+        Task<User> UpdateEmployeeWithoutPass(int employeeId, UserUpdateWithoutPassDTO userUpdateDTO);
         Task<User> DeleteEmployee(int id);
     }
 }
