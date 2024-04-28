@@ -49,6 +49,27 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
                 navigationManager.NavigateTo(navigationManager.Uri, forceLoad:true);
             }
         }
-        
+
+        public async Task UpdateProject()
+        {
+            try
+            {
+                ProjectToAddDTO projectToAddDTO = new ProjectToAddDTO
+                {
+                    Title = Title,
+                    Description = Description
+                };
+                Console.WriteLine(projectToAddDTO.Title);
+                var response = await _projectService.UpdateProject(ProjectID, projectToAddDTO);
+                if (response != null)
+                {
+                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
     }
 }
