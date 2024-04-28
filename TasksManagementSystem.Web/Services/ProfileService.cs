@@ -20,14 +20,60 @@ namespace TasksManagementSystem.Web.Services
             _httpClient = httpClient;
             _jsRuntime = jSRuntime;
         }
-        public Task<UserDTO> AddEmployee(UserRegisterDTO userRegisterDTO)
+        public async Task<UserDTO> AddEmployee(UserRegisterDTO userRegisterDTO)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.PostAsJsonAsync<UserRegisterDTO>($"api/Profile", userRegisterDTO);
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        return default(UserDTO);
+
+                    return await response.Content.ReadFromJsonAsync<UserDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public Task<UserDTO> DeleteUser(int userId)
+        public async Task<UserDTO> DeleteUser(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.DeleteAsync($"api/Profile/{userId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        return default(UserDTO);
+
+                    return await response.Content.ReadFromJsonAsync<UserDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<IEnumerable<UserDTO>> GetAllEmployees()
@@ -46,9 +92,32 @@ namespace TasksManagementSystem.Web.Services
             }
         }
 
-        public Task<UserDTO> UpdateEmployee(int employeeId, UserUpdateDTO userUpdateDTO)
+        public async Task<UserDTO> UpdateEmployee(int employeeId, UserUpdateDTO userUpdateDTO)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string token = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.PutAsJsonAsync<UserUpdateDTO>($"api/Profile/{employeeId}", userUpdateDTO);
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        return default(UserDTO);
+
+                    return await response.Content.ReadFromJsonAsync<UserDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
