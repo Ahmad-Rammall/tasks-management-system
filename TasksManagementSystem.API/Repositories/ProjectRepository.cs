@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
 using TasksManagementSystem.API.Data;
 using TasksManagementSystem.API.Entities;
@@ -57,21 +58,17 @@ namespace TasksManagementSystem.API.Repositories
 
         public async Task<Project> UpdateProject(int projectId, ProjectToAddDTO projectToAddDTO)
         {
-            if (!await ProjectExists(projectId))
-            {
+            var project = await _context.Projects.FindAsync(projectId);
+            if (project == null)
                 return null;
-            }
 
-            var newProject = new Project
-            {
-                Title = projectToAddDTO.Title,
-                Description = projectToAddDTO.Description,
-            };
+            project.Title = projectToAddDTO.Title;
+            project.Description = projectToAddDTO.Description;
 
-            _context.Projects.AddAsync(newProject);
+            _context.Entry(project).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            return newProject;
+            return project;
         }
         public async Task<IEnumerable<Project>> GetUserProjects(int employeeId)
         {
