@@ -50,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDb21tZW50Q29tcG9uZW50XENvbW1lbnRDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-fjxb51uwk3
 
+[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Components/ProfileComponent/ProfileComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQcm9maWxlQ29tcG9uZW50XFByb2ZpbGVDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-ecj4nx33oo
+
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Components/ProjectComponent/ProjectComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQcm9qZWN0Q29tcG9uZW50XFByb2plY3RDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-nr9aoqcl3m

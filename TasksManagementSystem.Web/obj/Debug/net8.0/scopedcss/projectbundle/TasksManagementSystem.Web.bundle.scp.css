@@ -11,6 +11,10 @@
 .fullname[b-fjxb51uwk3]{
     color:gray;
 }
+/* /Components/ProfileComponent/ProfileComponent.razor.rz.scp.css */
+.hide[b-ecj4nx33oo]{
+    display:none;
+}
 /* /Components/ProjectComponent/ProjectComponent.razor.rz.scp.css */
 .projects-container[b-nr9aoqcl3m] {
     background-color: #ffffff;
@@ -361,6 +365,10 @@ input[b-hzvgg6vwqr] {
 }
 /* /Pages/Admin/Profiles/ProfilesPage.razor.rz.scp.css */
 body[b-1uh7jzw6no] {
+}
+
+.hide[b-1uh7jzw6no]{
+    display:none;
 }
 /* /Pages/Admin/Requests/RequestsPage.razor.rz.scp.css */
 body[b-evn778fe4r] {

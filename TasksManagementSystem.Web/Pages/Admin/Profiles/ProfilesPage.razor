@@ -24,22 +24,13 @@
 
             @foreach (var employee in EmployeesList)
             {
-                <tr>
-                    <td>@employee.Id</td>
-                    <td>@employee.Username</td>
-                    <td>@employee.FullName</td>
-                    <td>@employee.RoleName</td>
-                    <td>@employee.IsDeleted</td>
-                    <td>
-                        <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
+                <ProfileComponent Employee="@employee" />
             }
         </tbody>
     </table>
 }
-else{
+else
+{
     <div>No Employees Yet!</div>
 }
 

@@ -12,6 +12,7 @@ namespace TasksManagementSystem.Web.Pages.Admin.Profiles
         public string Username { get; set; }
         public string Password { get; set; }
         public string ErrorMessage { get; set; }
+        public bool ShowDeleteModal { get; set; } = false;
 
         [Inject]
         public IProfileService _profileService { get; set; }
