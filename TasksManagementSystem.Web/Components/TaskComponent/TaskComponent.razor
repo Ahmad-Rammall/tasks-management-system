@@ -4,15 +4,22 @@
     <div class="top-row">
         <h2 class="task-title">@Title</h2>
         <label class="completed-row">
-            @if (IsCompleted)
+            @if (IsAdmin)
             {
-                <input type="checkbox" class="completed" @bind="IsCompleted" disabled />
+                <div>UserId : </div>    
             }
             else
             {
-                <input type="checkbox" class="completed" @bind="IsCompleted" @onclick="SendApprovalRequest"/>
+                @if (IsCompleted)
+                {
+                    <input type="checkbox" class="completed" @bind="IsCompleted" disabled />
+                }
+                else
+                {
+                    <input type="checkbox" class="completed" @bind="IsCompleted" @onclick="SendApprovalRequest" />
+                    <span>Completed</span>
+                }
             }
-            Completed
         </label>
     </div>
     <p class="task-description">@Description</p>

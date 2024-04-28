@@ -48,6 +48,31 @@ namespace TasksManagementSystem.Web.Services
             }
         }
 
+        public async Task<TaskDTO> AddTaskToEmployee(TaskToAddDTO taskToAddDTO)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync<TaskToAddDTO>("api/Task", taskToAddDTO);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                        return default(TaskDTO);
+
+                    return await response.Content.ReadFromJsonAsync<TaskDTO>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Status : {response.StatusCode} - Message : {message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<IEnumerable<TaskRequestDTO>> GetAllRequests()
         {
             try

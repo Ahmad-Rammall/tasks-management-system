@@ -11,11 +11,17 @@ namespace TasksManagementSystem.Web.Components.TaskComponent
         public int TaskId { get; set; }
 
         [Parameter]
+        public int UserId { get; set; }
+
+        [Parameter]
         public string Title { get; set; }
         [Parameter]
         public string Description { get; set; }
         [Parameter]
         public bool IsCompleted { get; set; }
+
+        [Parameter]
+        public bool IsAdmin { get; set; }
         public string ErrorMessage { get; set; }
 
         [Inject]
