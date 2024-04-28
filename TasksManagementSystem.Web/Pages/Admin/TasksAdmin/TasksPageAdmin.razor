@@ -11,7 +11,7 @@
 {
     foreach (var task in TasksList)
     {
-        <TaskComponent TaskId="@task.Id" Title="@task.Title" Description="@task.Description" IsAdmin="true"/>
+        <TaskComponent TaskId="@task.Id" Title="@task.Title" Description="@task.Description" UserId="@task.UserId" IsAdmin="true"/>
     }
 }
 

@@ -77,6 +77,7 @@ namespace TasksManagementSystem.API.Helpers
                     Title = task.Title,
                     Description = task.Description,
                     IsCompleted = task.IsCompleted,
+                    UserId = task.UserId
                 }).ToList();
             return tasksList;
         }
@@ -88,6 +89,7 @@ namespace TasksManagementSystem.API.Helpers
                 Title = task.Title,
                 Description = task.Description,
                 IsCompleted = task.IsCompleted,
+                UserId = task.UserId
             };
         }
         public static TaskRequestDTO ConvertToDto(this TaskApprovalRequest request)
