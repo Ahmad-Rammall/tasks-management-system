@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Fluxor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
+using TaskManagementSystem.Models.DTOs.UserDTOs;
 using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services.Interfaces;
+using TasksManagementSystem.Web.Store.User;
 
 namespace TasksManagementSystem.Web.Pages.Login
 {
@@ -19,6 +22,12 @@ namespace TasksManagementSystem.Web.Pages.Login
         public string Username { get; set; }
         public string Password { get; set; }
         public string ErrorMessage { get; set; }
+
+        [Inject]
+        protected IState<UserState> UserState { get; set; }
+
+        [Inject]
+        public IDispatcher Dispatcher { get; set; }
         public async Task HandleLogin()
         {
             try
@@ -40,6 +49,9 @@ namespace TasksManagementSystem.Web.Pages.Login
                     await LocalStorageManager.SaveToLocalStorage(JSRuntime, "jwtToken", userResponse.Token);
                     await LocalStorageManager.SaveToLocalStorage(JSRuntime, "userId", userResponse.User.Id.ToString());
                     await LocalStorageManager.SaveToLocalStorage(JSRuntime, "userRole", userResponse.User.RoleId.ToString());
+
+                    var userState = new UserState(userResponse.User);
+                    Dispatcher.Dispatch(new ImplementUserAction(userState));
                 }
 
             }

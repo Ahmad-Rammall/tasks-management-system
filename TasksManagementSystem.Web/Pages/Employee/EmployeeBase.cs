@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Fluxor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Collections;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
 using TaskManagementSystem.Models.DTOs.TaskDTOs;
 using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services.Interfaces;
+using TasksManagementSystem.Web.Store.User;
 
 namespace TasksManagementSystem.Web.Pages.Employee
 {
@@ -21,10 +23,13 @@ namespace TasksManagementSystem.Web.Pages.Employee
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
 
+        [Inject]
+        public IState<UserState> UserState { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
-            string userId = await LocalStorageManager.GetFromLocalStorage(JSRuntime, "userId");
-            ProjectsList = await _projectService.GetEmployeeProjects(int.Parse(userId));
+            int userId = UserState.Value.UserId;
+            ProjectsList = await _projectService.GetEmployeeProjects(userId);
         }
     }
 }

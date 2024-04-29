@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Fluxor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
 using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Pages.Projects;
 using TasksManagementSystem.Web.Services.Interfaces;
+using TasksManagementSystem.Web.Store.User;
 
 namespace TasksManagementSystem.Web.Components.ProjectComponent
 {
@@ -34,25 +36,25 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
         public NavigationManager navigationManager { get; set; }
 
         [Inject]
+        public IState<UserState> UserState { get; set; }
+
+        [Inject]
         public IProjectService _projectService { get; set; }
         public async Task HandleClick()
         {
-            var roleId = await LocalStorageManager.GetFromLocalStorage(JSRuntime, "userRole");
-            if(int.Parse(roleId) == 2)
-                navigationManager.NavigateTo($"/TasksPage/{ProjectID}");
-            else
+            if(UserState.Value.IsAdmin)
                 navigationManager.NavigateTo($"/TasksPageAdmin/{ProjectID}");
+            else
+                navigationManager.NavigateTo($"/TasksPage/{ProjectID}");
         }
         public async Task DeleteProject()
         {
-            Console.WriteLine(ProjectID);
-
-            //var response = await _projectService.DeleteProject(ProjectID);
-            //if (response != null)
-            //{
-            //    ShowDeleteModal = false;
-            //    navigationManager.NavigateTo(navigationManager.Uri, forceLoad:true);
-            //}
+            var response = await _projectService.DeleteProject(ProjectID);
+            if (response != null)
+            {
+                ShowDeleteModal = false;
+                navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+            }
         }
 
         public async Task UpdateProject()
@@ -64,12 +66,11 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
                     Title = Title,
                     Description = Description
                 };
-                Console.WriteLine(ProjectID);
-                //var response = await _projectService.UpdateProject(ProjectID, projectToAddDTO);
-                //if (response != null)
-                //{
-                //    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-                //}
+                var response = await _projectService.UpdateProject(ProjectID, projectToAddDTO);
+                if (response != null)
+                {
+                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                }
             }
             catch (Exception ex)
             {

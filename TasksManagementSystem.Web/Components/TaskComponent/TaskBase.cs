@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Fluxor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services.Interfaces;
+using TasksManagementSystem.Web.Store.User;
 
 namespace TasksManagementSystem.Web.Components.TaskComponent
 {
@@ -32,6 +34,9 @@ namespace TasksManagementSystem.Web.Components.TaskComponent
 
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
+
+        [Inject]
+        public IState<UserState> UserState { get; set; }
         public async Task SendApprovalRequest()
         {
             try
@@ -46,12 +51,10 @@ namespace TasksManagementSystem.Web.Components.TaskComponent
         }
         public async Task NavigateToComments()
         {
-            navigationManager.NavigateTo($"/comments/{TaskId}");
-            var roleId = await LocalStorageManager.GetFromLocalStorage(JSRuntime, "userRole");
-            if (int.Parse(roleId) == 2)
-                navigationManager.NavigateTo($"/comments/{TaskId}");
-            else
+            if (UserState.Value.IsAdmin)
                 navigationManager.NavigateTo($"/commentsAdmin/{TaskId}");
+            else
+                navigationManager.NavigateTo($"/comments/{TaskId}");
         }
     }
 }

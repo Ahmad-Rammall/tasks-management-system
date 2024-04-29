@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Fluxor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TaskManagementSystem.Models.DTOs.CommentDTOs;
 using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services.Interfaces;
+using TasksManagementSystem.Web.Store.User;
 
 namespace TasksManagementSystem.Web.Pages.Comment
 {
@@ -21,6 +23,9 @@ namespace TasksManagementSystem.Web.Pages.Comment
         NavigationManager NavigationManager { get; set; }
         public IEnumerable<CommentDTO> CommentsList { get; set; }
         public string CommentContent { get; set; }
+
+        [Inject]
+        public IState<UserState> UserState { get; set; }
         protected override async Task OnInitializedAsync()
         {
             try
@@ -38,12 +43,12 @@ namespace TasksManagementSystem.Web.Pages.Comment
         }
         public async Task SendComment()
         {
-            string userId = await LocalStorageManager.GetFromLocalStorage(jSRuntime, "userId");
+            int userId = UserState.Value.UserId;
             Console.WriteLine(userId);
             CommentToAddDTO commentDto = new CommentToAddDTO
             {
                 TaskId = TaskId,
-                UserId = int.Parse(userId),
+                UserId = userId,
                 Content = CommentContent
             };
 

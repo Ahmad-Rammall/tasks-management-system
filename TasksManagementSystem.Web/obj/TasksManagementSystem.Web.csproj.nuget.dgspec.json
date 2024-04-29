@@ -109,6 +109,18 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Fluxor": {
+              "target": "Package",
+              "version": "[5.9.1, )"
+            },
+            "Fluxor.Blazor.Web": {
+              "target": "Package",
+              "version": "[5.9.1, )"
+            },
+            "Fluxor.Blazor.Web.ReduxDevTools": {
+              "target": "Package",
+              "version": "[5.9.1, )"
+            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
               "version": "[8.0.3, )"
