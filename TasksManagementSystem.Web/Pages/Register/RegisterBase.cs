@@ -11,6 +11,7 @@ namespace TasksManagementSystem.Web.Pages.Register
         public string VerifyPassword { get; set; }
         public string ErrorMessage { get; set; }
         public string FullName { get; set; }
+        public bool IsValid { get; set; }
 
         [Inject]
         public IAuthService _authService { get; set; }
@@ -33,6 +34,8 @@ namespace TasksManagementSystem.Web.Pages.Register
                     return;
                 }
                 ErrorMessage = string.Empty;
+
+                if (!IsValid) return;
 
                 UserRegisterDTO user = new UserRegisterDTO
                 {

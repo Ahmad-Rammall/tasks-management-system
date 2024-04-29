@@ -5,10 +5,32 @@
     <div class="container">
         <h2>Register</h2>
         <form method="post">
-            <input type="text" placeholder="Username" class="input" @bind="Username">
-            <input type="text" placeholder="Full Name" class="input" @bind="FullName">
-            <input type="password" placeholder="Password" class="input" @bind="Password">
-            <input type="password" placeholder="Re-type Password" class="input" @bind="VerifyPassword">
+            <div class="mb-3">
+                <input type="text" placeholder="Username" class="form-control " @bind="Username">
+                @if (Username?.Length < 5)
+                {
+                    <span class="text-danger">Minimum 5 chars.</span>
+                    IsValid = false;
+                }
+                else
+                {
+                    IsValid = true;
+                }
+            </div>
+            <input type="text" placeholder="Full Name" class="form-control mb-2" @bind="FullName">
+            <div class="mb-3">
+                <input type="password" placeholder="Password" class="form-control" @bind="Password">
+                @if (Password?.Length < 8)
+                {
+                    <label class="text-danger">Minimum 8 chars.</label>
+                    IsValid = false;
+                }
+                else
+                {
+                    IsValid = true;
+                }
+            </div>
+            <input type="password" placeholder="Re-type Password" class="form-control mb-3" @bind="VerifyPassword">
             <button type="button" class="submit-btn" @onclick="HandleRegister">Register</button>
         </form>
 

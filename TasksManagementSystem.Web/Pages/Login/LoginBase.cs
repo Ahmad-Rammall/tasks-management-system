@@ -28,10 +28,12 @@ namespace TasksManagementSystem.Web.Pages.Login
 
         [Inject]
         public IDispatcher Dispatcher { get; set; }
+        public bool IsValid { get; set; } = false;
         public async Task HandleLogin()
         {
             try
             {
+                if (!IsValid) { return; }
                 UserLoginDTO userLoginDTO = new UserLoginDTO
                 {
                     Username = Username,
