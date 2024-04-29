@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TasksManagementSystem.API.Helpers;
 using TasksManagementSystem.API.Repositories.Interfaces;
@@ -49,6 +50,23 @@ namespace TasksManagementSystem.API.Controllers
                 }
 
                 return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //[HttpGet]
+        [HttpPost]
+        //[Route("{token:string}")]
+        public async Task<IActionResult> IsUserAdmin([FromBody] string token)
+        {
+            try
+            {
+                var response = await _authRepo.IsUserAdmin(token);
+
+                return Ok(response);
             }
             catch (Exception ex)
             {

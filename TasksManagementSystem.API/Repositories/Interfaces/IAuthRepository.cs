@@ -8,5 +8,6 @@ namespace TasksManagementSystem.API.Repositories.Interfaces
     {
         Task<LoginResponseDTO> LoginUser(UserLoginDTO userLoginDTO);
         Task<User> RegisterUser(UserRegisterDTO userRegisterDTO);
+        Task<bool> IsUserAdmin(string token);
     }
 }

@@ -106,5 +106,16 @@ namespace TasksManagementSystem.API.Repositories
 
             return newUser;
         }
+
+        public async Task<bool> IsUserAdmin(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var gotToken = handler.ReadJwtToken(token);
+            var role = gotToken.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")?.Value;
+
+            if (role == "1") return true;
+            return false;
+
+        }
     }
 }
