@@ -32,15 +32,14 @@ namespace TasksManagementSystem.Web.Pages.Login
 
                 if (userResponse != null)
                 {
-                    if (userResponse.User.RoleName.Equals("User"))
+                    if (userResponse.User.RoleId == 2)
                         navigationManager.NavigateTo("/employeePage");
-                    else if(userResponse.User.RoleName.Equals("Admin"))
+                    else if(userResponse.User.RoleId == 1)
                         navigationManager.NavigateTo("/adminPage");
 
                     await LocalStorageManager.SaveToLocalStorage(JSRuntime, "jwtToken", userResponse.Token);
                     await LocalStorageManager.SaveToLocalStorage(JSRuntime, "userId", userResponse.User.Id.ToString());
                     await LocalStorageManager.SaveToLocalStorage(JSRuntime, "userRole", userResponse.User.RoleId.ToString());
-
                 }
 
             }
