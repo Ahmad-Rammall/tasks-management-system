@@ -27,7 +27,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" @onclick="() => ShowDeleteModal=false">Dismiss</button>
-                <button type="button" class="btn btn-danger" @onclick="DeleteEmployee">Accept</button>
+                <button type="button" class="btn btn-danger" @onclick="DeleteEmployee">Delete</button>
             </div>
         </div>
     </div>
@@ -35,11 +35,11 @@
 
 @* Update Modal *@
 
-<div class="modal modal-dialog-centered @(!ShowUpdateModal ? "hide" : "")" id="addProfileModal" tabindex="-1" aria-labelledby="addProfileModal" aria-hidden="false">
+<div class="modal modal-dialog-centered @(!ShowUpdateModal ? "hide" : "")" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModal" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Profile</h1>
                 <button type="button" class="btn-close" @onclick="()=>ShowUpdateModal=false" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -65,7 +65,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" @onclick="()=>ShowUpdateModal=false" >Close</button>
-                <button type="button" class="btn btn-primary" @onclick="UpdateEmployee">Add Task</button>
+                <button type="button" class="btn btn-primary" @onclick="UpdateEmployee">Update</button>
             </div>
         </div>
     </div>
