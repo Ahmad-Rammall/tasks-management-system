@@ -7,7 +7,7 @@
         {
             @foreach (var comment in CommentsList)
             {
-                <CommentComponent Fullname="xxx xxxx" Content="@comment.Content" />
+                <CommentComponent Fullname="@comment.UserFullname" Content="@comment.Content" />
             }
         }
     </div>

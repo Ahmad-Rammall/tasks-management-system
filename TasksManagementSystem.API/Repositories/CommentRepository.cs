@@ -41,7 +41,7 @@ namespace TasksManagementSystem.API.Repositories
 
         public async Task<IEnumerable<Comment>> GetAllTaskComments(int taskId)
         {
-            return await _context.Comments.Include(c => c.UserProp).Where(comment => comment.TaskId == taskId).ToListAsync();
+            return await _context.Comments.Include(comment => comment.UserProp).Where(comment => comment.TaskId == taskId).ToListAsync();
         }
     }
 }

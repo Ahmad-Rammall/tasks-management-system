@@ -120,7 +120,8 @@ namespace TasksManagementSystem.API.Helpers
                     Id = comment.Id,
                     Content = comment.Content,
                     UserId = comment.UserId,
-                    TaskId = comment.TaskId
+                    TaskId = comment.TaskId,
+                    UserFullname = comment.UserProp.FullName
                 }).ToList();
 
             return commentsList;
