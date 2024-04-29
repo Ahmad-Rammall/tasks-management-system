@@ -48,7 +48,6 @@ namespace TasksManagementSystem.Web.Pages.Login
 
                     await LocalStorageManager.SaveToLocalStorage(JSRuntime, "jwtToken", userResponse.Token);
                     await LocalStorageManager.SaveToLocalStorage(JSRuntime, "userId", userResponse.User.Id.ToString());
-                    await LocalStorageManager.SaveToLocalStorage(JSRuntime, "userRole", userResponse.User.RoleId.ToString());
 
                     var userState = new UserState(userResponse.User);
                     Dispatcher.Dispatch(new ImplementUserAction(userState));

@@ -43,12 +43,12 @@ namespace TasksManagementSystem.Web.Pages.Comment
         }
         public async Task SendComment()
         {
-            int userId = UserState.Value.UserId;
+            string userId = await LocalStorageManager.GetFromLocalStorage(jSRuntime, "userId");
             Console.WriteLine(userId);
             CommentToAddDTO commentDto = new CommentToAddDTO
             {
                 TaskId = TaskId,
-                UserId = userId,
+                UserId = int.Parse(userId),
                 Content = CommentContent
             };
 

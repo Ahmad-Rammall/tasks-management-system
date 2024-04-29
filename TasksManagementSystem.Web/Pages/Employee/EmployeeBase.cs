@@ -28,8 +28,9 @@ namespace TasksManagementSystem.Web.Pages.Employee
 
         protected override async Task OnInitializedAsync()
         {
-            int userId = UserState.Value.UserId;
-            ProjectsList = await _projectService.GetEmployeeProjects(userId);
+            string userId = await LocalStorageManager.GetFromLocalStorage(JSRuntime, "userId");
+
+            ProjectsList = await _projectService.GetEmployeeProjects(int.Parse(userId));
         }
     }
 }
