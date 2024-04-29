@@ -34,6 +34,12 @@ namespace TasksManagementSystem.Web.Pages.Login
             try
             {
                 if (!IsValid) { return; }
+
+                if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
+                {
+                    ErrorMessage = "All Fields Required!";
+                    return;
+                }
                 UserLoginDTO userLoginDTO = new UserLoginDTO
                 {
                     Username = Username,
