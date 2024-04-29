@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
 using TaskManagementSystem.Models.DTOs.TaskDTOs;
+using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services.Interfaces;
 
 namespace TasksManagementSystem.Web.Pages.Tasks
 {
-    public class TasksBase : ComponentBase
+    public class TasksBase : JwtVerificationComponent
     {
         [Parameter]
         public int ProjectId { get; set; }
@@ -14,6 +15,8 @@ namespace TasksManagementSystem.Web.Pages.Tasks
         public IEnumerable<TaskDTO> TasksList { get; set; }
         protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
+            if (IsNavigated) return;
             TasksList = await _taskService.GetProjectTasks(ProjectId);
         }
     }

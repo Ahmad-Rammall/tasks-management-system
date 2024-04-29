@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
 using TasksManagementSystem.Web.Helpers;
-using TasksManagementSystem.Web.Pages.Projects;
+using TasksManagementSystem.Web.Pages.Admin.Projects;
 using TasksManagementSystem.Web.Services.Interfaces;
 using TasksManagementSystem.Web.Store.User;
 
@@ -30,9 +30,6 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
         public bool ShowUpdateModal { get; set; } = false;
 
         [Inject]
-        public IJSRuntime JSRuntime { get; set; }
-
-        [Inject]
         public NavigationManager navigationManager { get; set; }
 
         [Inject]
@@ -40,9 +37,13 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
 
         [Inject]
         public IProjectService _projectService { get; set; }
+        [Inject] private IAuthService _authService { get; set; }
+        [Inject] private IJSRuntime jSRuntime { get; set; }
         public async Task HandleClick()
         {
-            if(UserState.Value.IsAdmin)
+            Methods methods = new Methods(_authService, jSRuntime);
+            bool isAdmin = await methods.IsUserAdmin();
+            if(isAdmin)
                 navigationManager.NavigateTo($"/TasksPageAdmin/{ProjectID}");
             else
                 navigationManager.NavigateTo($"/TasksPage/{ProjectID}");

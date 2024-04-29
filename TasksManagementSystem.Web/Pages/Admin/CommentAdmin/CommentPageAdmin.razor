@@ -2,7 +2,9 @@
 @inherits CommentAdminBase
 @layout AdminLayout
 
-<div class="container">
+@if (IsAdmin)
+{
+    <div class="container">
     <div class="comments">
         @if (CommentsList != null)
         {
@@ -16,4 +18,9 @@
         <input type="text" placeholder="Enter Your Comment" @bind="CommentContent" />
         <button class="btn btn-primary" @onclick="SendComment">Send</button>
     </div>
-</div>
+    </div>
+}
+else
+{
+    <h1 class="text-danger">UNAUTHORIZED</h1>
+}

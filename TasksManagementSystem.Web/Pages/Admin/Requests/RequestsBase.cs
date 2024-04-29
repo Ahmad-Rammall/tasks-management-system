@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using TaskManagementSystem.Models.DTOs.TaskDTOs;
+using TasksManagementSystem.Web.Helpers;
+using TasksManagementSystem.Web.Services;
 using TasksManagementSystem.Web.Services.Interfaces;
 
 namespace TasksManagementSystem.Web.Pages.Admin.Requests
 {
-    public class RequestsBase : ComponentBase
+    public class RequestsBase : JwtVerificationComponent
     {
         [Inject]
         public ITaskService _taskService {  get; set; }
@@ -13,10 +16,21 @@ namespace TasksManagementSystem.Web.Pages.Admin.Requests
         public bool ShowAcceptModal { get; set; } = false;
         public bool ShowRejectModal { get; set; } = false;
         public string ErrorMessage { get; set; }
+        [Inject] public IAuthService _authService { get; set; }
+        [Inject] public IJSRuntime jSRuntime { get; set; }
+
+        protected bool IsAdmin { get; set; } = true;
 
         protected override async Task OnInitializedAsync()
         {
-            RequestsList = await _taskService.GetAllRequests();
+            await base.OnInitializedAsync();
+            if (IsNavigated) return;
+
+            Methods methods = new Methods(_authService, jSRuntime);
+            IsAdmin = await methods.IsUserAdmin();
+
+            if (IsAdmin)
+                RequestsList = await _taskService.GetAllRequests();
         }
         public async Task AcceptRequest()
         {

@@ -10,7 +10,7 @@ using TasksManagementSystem.Web.Store.User;
 
 namespace TasksManagementSystem.Web.Pages.Employee
 {
-    public class EmployeeBase : ComponentBase
+    public class EmployeeBase : JwtVerificationComponent
     {
         [Inject]
         public ITaskService _taskService { get; set; }
@@ -28,6 +28,9 @@ namespace TasksManagementSystem.Web.Pages.Employee
 
         protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
+            if (IsNavigated) return;
+
             string userId = await LocalStorageManager.GetFromLocalStorage(JSRuntime, "userId");
 
             ProjectsList = await _projectService.GetEmployeeProjects(int.Parse(userId));

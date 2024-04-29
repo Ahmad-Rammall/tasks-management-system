@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TasksManagementSystem.Web.Helpers;
+using TasksManagementSystem.Web.Services;
 using TasksManagementSystem.Web.Services.Interfaces;
 using TasksManagementSystem.Web.Store.User;
 
@@ -37,6 +38,8 @@ namespace TasksManagementSystem.Web.Components.TaskComponent
 
         [Inject]
         public IState<UserState> UserState { get; set; }
+        [Inject] private IAuthService _authService { get; set; }
+        [Inject] private IJSRuntime jSRuntime { get; set; }
         public async Task SendApprovalRequest()
         {
             try
@@ -51,10 +54,12 @@ namespace TasksManagementSystem.Web.Components.TaskComponent
         }
         public async Task NavigateToComments()
         {
-            if (UserState.Value.IsAdmin)
-                navigationManager.NavigateTo($"/commentsAdmin/{TaskId}");
+            Methods methods = new Methods(_authService, jSRuntime);
+            bool isAdmin = await methods.IsUserAdmin();
+            if (isAdmin)
+                navigationManager.NavigateTo($"/CommentsAdmin/{TaskId}");
             else
-                navigationManager.NavigateTo($"/comments/{TaskId}");
+                navigationManager.NavigateTo($"/Comments/{TaskId}");
         }
     }
 }

@@ -101,3 +101,16 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+.no-content {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    font-size: 2rem;
+}
+
+.hide{
+    display:none;
+}

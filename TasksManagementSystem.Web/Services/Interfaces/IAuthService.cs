@@ -6,5 +6,7 @@ namespace TasksManagementSystem.Web.Services.Interfaces
     {
         Task<LoginResponseDTO> LoginUser(UserLoginDTO userLoginDTO);
         Task<UserRegisterDTO> RegisterUser(UserRegisterDTO userRegisterDTO);
+        Task<bool> IsUserAdmin(string token);
+
     }
 }

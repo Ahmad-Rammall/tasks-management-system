@@ -2,11 +2,13 @@
 using Microsoft.JSInterop;
 using System.Reflection.Metadata;
 using TaskManagementSystem.Models.DTOs.TaskDTOs;
+using TasksManagementSystem.Web.Helpers;
+using TasksManagementSystem.Web.Services;
 using TasksManagementSystem.Web.Services.Interfaces;
 
 namespace TasksManagementSystem.Web.Pages.Admin.TasksAdmin
 {
-    public class TasksAdminBase : ComponentBase
+    public class TasksAdminBase : JwtVerificationComponent
     {
         [Parameter]
         public int ProjectId { get; set; }
@@ -25,13 +27,30 @@ namespace TasksManagementSystem.Web.Pages.Admin.TasksAdmin
         public int UserId { get; set; }
         public string ErrorMessage { get; set; }
         public string SuccessMessage { get; set; }
+        [Inject] public IAuthService _authService { get; set; }
+
+        protected bool IsAdmin { get; set; } = true;
+        protected override async Task OnInitializedAsync()
+        {
+            try
+            {
+                await base.OnInitializedAsync();
+                if (IsNavigated) return;
+
+                Methods methods = new Methods(_authService, jSRuntime);
+                IsAdmin = await methods.IsUserAdmin();
+
+                if(IsAdmin)
+                    TasksList = await _taskService.GetProjectTasks(ProjectId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         private void RefreshPage()
         {
             NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
-        }
-        protected override async Task OnInitializedAsync()
-        {
-            TasksList = await _taskService.GetProjectTasks(ProjectId);
         }
         public async Task AddTaskToEmployee()
         {

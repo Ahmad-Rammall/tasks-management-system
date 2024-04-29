@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TaskManagementSystem.Models.DTOs.CommentDTOs;
 using TasksManagementSystem.Web.Helpers;
+using TasksManagementSystem.Web.Services;
 using TasksManagementSystem.Web.Services.Interfaces;
 using TasksManagementSystem.Web.Store.User;
 
 namespace TasksManagementSystem.Web.Pages.Admin.CommentAdmin
 {
-    public class CommentAdminBase : ComponentBase
+    public class CommentAdminBase : JwtVerificationComponent
     {
         [Parameter]
         public int TaskId { get; set; }
@@ -26,11 +27,20 @@ namespace TasksManagementSystem.Web.Pages.Admin.CommentAdmin
 
         [Inject]
         public IState<UserState> UserState { get; set; }
+        [Inject] IAuthService _authService { get; set; }
+        protected bool IsAdmin { get; set; } = true;
         protected override async Task OnInitializedAsync()
         {
             try
             {
-                CommentsList = await _commentService.GetAllTaskComments(TaskId);
+                await base.OnInitializedAsync();
+                if (IsNavigated) return;
+
+                Methods methods = new Methods(_authService, jSRuntime);
+                IsAdmin = await methods.IsUserAdmin();
+
+                if (IsAdmin)
+                    CommentsList = await _commentService.GetAllTaskComments(TaskId);
             }
             catch (Exception ex)
             {

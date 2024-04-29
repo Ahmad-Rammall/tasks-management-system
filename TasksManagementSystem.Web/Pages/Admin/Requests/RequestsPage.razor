@@ -2,85 +2,91 @@
 @layout AdminLayout
 @inherits RequestsBase
 
-@if (RequestsList != null && RequestsList.Count() > 0)
+@if (IsAdmin)
 {
-    <table class="table table-striped table-bordered table-hover table-responsive text-center">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>TaskID</th>
-                <th>IsApproved</th>
-                <th>Options</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var request in RequestsList)
-            {
+    @if (RequestsList != null && RequestsList.Count() > 0)
+    {
+        <table class="table table-striped table-bordered table-hover table-responsive text-center">
+            <thead>
                 <tr>
-                    <td>@request.Id</td>
-                    <td>@request.TaskId</td>
-                    <td>@request.IsApproved</td>
-                    <td>
-                        <button class="btn btn-success" @onclick="()=>{
+                    <th>ID</th>
+                    <th>TaskID</th>
+                    <th>IsApproved</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var request in RequestsList)
+                {
+                    <tr>
+                        <td>@request.Id</td>
+                        <td>@request.TaskId</td>
+                        <td>@request.IsApproved</td>
+                        <td>
+                            <button class="btn btn-success" @onclick="()=>{
                             SelectedRequestId=request.Id;
                             ShowAcceptModal=true;
                             Console.WriteLine(SelectedRequestId);
                         }">
-                            Accept
-                        </button>
-                        <button class="btn btn-danger" @onclick="()=>{
+                                Accept
+                            </button>
+                            <button class="btn btn-danger" @onclick="()=>{
                             SelectedRequestId=request.Id;
                             ShowRejectModal=true;
                         }">
-                            Reject
-                        </button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                                Reject
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+            <div class="text-center no-content">No Requests Yet.</div>
+    }
+
+    @* Accept Modal *@
+    <div class="modal-dialog modal-dialog-centered @(!ShowAcceptModal ? "hide" : "")" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Accept Request</h5>
+                    <button type="button" class="btn-close" @onclick="() => ShowAcceptModal=false" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to accept this request?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="() => ShowAcceptModal=false">Dismiss</button>
+                    <button type="button" class="btn btn-success" @onclick="AcceptRequest">Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Reject Modal *@
+    <div class="modal-dialog modal-dialog-centered @(!ShowRejectModal ? "hide" : "")" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reject Request</h5>
+                    <button type="button" class="btn-close" @onclick="() => ShowRejectModal=false" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to reject this request?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="() => ShowRejectModal=false">Dismiss</button>
+                    <button type="button" class="btn btn-success" @onclick="RejectRequest">Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 else
 {
-    <div>No Employees Yet!</div>
+    <h1 class="text-danger">UNAUTHORIZED</h1>
 }
-
-@* Accept Modal *@
-<div class="modal-dialog modal-dialog-centered @(!ShowAcceptModal ? "hide" : "")" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Accept Request</h5>
-                <button type="button" class="btn-close" @onclick="() => ShowAcceptModal=false" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to accept this request?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @onclick="() => ShowAcceptModal=false">Dismiss</button>
-                <button type="button" class="btn btn-success" @onclick="AcceptRequest">Accept</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-@* Reject Modal *@
-<div class="modal-dialog modal-dialog-centered @(!ShowRejectModal ? "hide" : "")" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Reject Request</h5>
-                <button type="button" class="btn-close" @onclick="() => ShowRejectModal=false" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to reject this request?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @onclick="() => ShowRejectModal=false">Dismiss</button>
-                <button type="button" class="btn btn-success" @onclick="RejectRequest">Accept</button>
-            </div>
-        </div>
-    </div>
-</div>
-

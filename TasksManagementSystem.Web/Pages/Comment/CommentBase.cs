@@ -8,7 +8,7 @@ using TasksManagementSystem.Web.Store.User;
 
 namespace TasksManagementSystem.Web.Pages.Comment
 {
-    public class CommentBase : ComponentBase
+    public class CommentBase : JwtVerificationComponent
     {
         [Parameter]
         public int TaskId { get; set; }
@@ -30,11 +30,9 @@ namespace TasksManagementSystem.Web.Pages.Comment
         {
             try
             {
+                await base.OnInitializedAsync();
+                if (IsNavigated) return;
                 CommentsList = await _commentService.GetAllTaskComments(TaskId);
-                foreach (var x in CommentsList)
-                {
-                    Console.WriteLine(x.Content + " : " + x.UserId);
-                }
             }
             catch (Exception ex)
             {

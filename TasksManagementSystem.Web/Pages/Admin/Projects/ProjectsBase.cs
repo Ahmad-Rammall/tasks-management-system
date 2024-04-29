@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
+using TasksManagementSystem.Web.Helpers;
+using TasksManagementSystem.Web.Services;
 using TasksManagementSystem.Web.Services.Interfaces;
 
-namespace TasksManagementSystem.Web.Pages.Projects
+namespace TasksManagementSystem.Web.Pages.Admin.Projects
 {
-    public class ProjectsBase : ComponentBase
+    public class ProjectsBase : JwtVerificationComponent
     {
         public IEnumerable<ProjectDTO> ProjectsList { get; set; }
         public string TitleToAdd { get; set; }
@@ -16,11 +19,22 @@ namespace TasksManagementSystem.Web.Pages.Projects
 
         [Inject]
         public NavigationManager navigationManager { get; set; }
+        [Inject] public IAuthService _authService { get; set; }
+        [Inject] public IJSRuntime jSRuntime { get; set; }
+
+        protected bool IsAdmin { get; set; } = true;
         protected override async Task OnInitializedAsync()
         {
             try
             {
-                ProjectsList = await _projectService.GetAllProjects();
+                await base.OnInitializedAsync();
+                if (IsNavigated) return;
+
+                Methods methods = new Methods(_authService, jSRuntime);
+                IsAdmin = await methods.IsUserAdmin();
+
+                if (IsAdmin)
+                    ProjectsList = await _projectService.GetAllProjects();
             }
             catch (Exception ex)
             {
