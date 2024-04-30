@@ -17,7 +17,13 @@ namespace TasksManagementSystem.Web.Pages.Tasks
         {
             await base.OnInitializedAsync();
             if (IsNavigated) return;
-            TasksList = await _taskService.GetProjectTasks(ProjectId);
+
+            string? userId = await LocalStorageManager.GetFromLocalStorage(JSRuntime, "userId");
+
+            if(string.IsNullOrWhiteSpace(userId) )
+                return;
+
+            TasksList = await _taskService.GetEmployeeTasks(ProjectId, int.Parse(userId));
         }
     }
 }

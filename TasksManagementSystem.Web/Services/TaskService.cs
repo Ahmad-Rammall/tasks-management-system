@@ -89,6 +89,22 @@ namespace TasksManagementSystem.Web.Services
             }
         }
 
+        public async Task<IEnumerable<TaskDTO>> GetEmployeeTasks(int projectId, int employeeId)
+        {
+            try
+            {
+                string jwtToken = await LocalStorageManager.GetFromLocalStorage(_jsRuntime, "jwtToken");
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+
+                var tasks = await _httpClient.GetFromJsonAsync<IEnumerable<TaskDTO>>($"api/Task/{projectId}/{employeeId}");
+                return tasks;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<IEnumerable<TaskDTO>> GetProjectTasks(int projectId)
         {
             try
