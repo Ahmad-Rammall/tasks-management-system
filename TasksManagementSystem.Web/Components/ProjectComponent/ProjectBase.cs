@@ -42,27 +42,27 @@ namespace TasksManagementSystem.Web.Components.ProjectComponent
             SetSelectedProjectId.InvokeAsync(Project.Id);
             OpenDeleteModal?.Invoke();
         }
-        
 
-        //public async Task UpdateProject()
-        //{
-        //    try
-        //    {
-        //        ProjectToAddDTO projectToAddDTO = new ProjectToAddDTO
-        //        {
-        //            Title = Title,
-        //            Description = Description
-        //        };
-        //        var response = await _projectService.UpdateProject(ProjectID, projectToAddDTO);
-        //        if (response != null)
-        //        {
-        //            navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ErrorMessage = ex.Message;
-        //    }
-        //}
+
+        public async Task UpdateProject()
+        {
+            try
+            {
+                ProjectToAddDTO projectToAddDTO = new ProjectToAddDTO
+                {
+                    Title = Project.Title,
+                    Description = Project.Description
+                };
+                var response = await _projectService.UpdateProject(Project.Id, projectToAddDTO);
+                if (response != null)
+                {
+                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
     }
 }
