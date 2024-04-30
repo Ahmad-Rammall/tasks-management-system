@@ -9,12 +9,12 @@ namespace TasksManagementSystem.Web.Components.ProfileComponent
     {
         [Parameter] public UserDTO Employee { get; set; }
         [Parameter] public bool IsDeleted { get; set; }
+        [Parameter] public EventCallback<UserDTO> SetSelectedUser { get; set; }
         [Parameter] public EventCallback<int> SetSelectedProfileId { get; set; }
         [Parameter] public Action OpenDeleteModal { get; set; }
-        [Parameter] public Action OpenAddModal { get; set; }
+        [Parameter] public Action OpenUpdateModal { get; set; }
         public string ErrorMessage { get; set; }
         public string Password { get; set; }
-        public bool ShowUpdateModal { get; set; } = false;
         [Inject] public IProfileService _profileService { get; set; }
         [Inject] NavigationManager navigationManager { get; set; }
 
@@ -23,41 +23,10 @@ namespace TasksManagementSystem.Web.Components.ProfileComponent
             SetSelectedProfileId.InvokeAsync(Employee.Id);
             OpenDeleteModal?.Invoke();
         }
-        public async Task UpdateEmployee()
+        public void ShowUpdateModal()
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(Password))
-                {
-                    UserUpdateWithoutPassDTO userDto = new UserUpdateWithoutPassDTO
-                    {
-                        FullName = Employee.FullName,
-                        Username = Employee.Username,
-                        IsDeleted = Employee.IsDeleted,
-                    };
-                    await _profileService.UpdateEmployeeWP(Employee.Id, userDto);
-                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-                }
-                else
-                {
-                    Console.WriteLine(Employee.Id);
-                    UserUpdateDTO userDto = new UserUpdateDTO
-                    {
-                        FullName = Employee.FullName,
-                        Username = Employee.Username,
-                        IsDeleted = Employee.IsDeleted,
-                        Password = Password
-                    };
-                    await _profileService.UpdateEmployee(Employee.Id, userDto);
-                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = ex.Message;
-            }
-        }
-        
+            SetSelectedUser.InvokeAsync(Employee);
+            OpenUpdateModal?.Invoke();
+        }        
     }
 }

@@ -6,45 +6,8 @@
     <td>@Employee.RoleName</td>
     <td>@Employee.IsDeleted</td>
     <td>
-        <button class="btn btn-primary" @onclick="()=>ShowUpdateModal=true">Update</button>
+        @* <button class="btn btn-primary" @onclick="()=>ShowUpdateModal=true">Update</button> *@
+        <button class="btn btn-primary" @onclick="ShowUpdateModal">Update</button>
         <button class="btn btn-danger" @onclick="ShowDeleteModal">Delete</button>
     </td>
 </tr>
-
-@* Update Modal *@
-
-<div class="modal modal-dialog-centered @(!ShowUpdateModal ? "hide" : "")" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModal" aria-hidden="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Profile</h1>
-                <button type="button" class="btn-close" @onclick="()=>ShowUpdateModal=false" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Employee Fullname:</label>
-                        <input type="text" class="form-control" @bind="Employee.FullName">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Username :</label>
-                        <input type="text" class="form-control" @bind="Employee.Username" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Password :</label>
-                        <input type="password" class="form-control" @bind="@Password" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">IsDeleted :</label>
-                        <input type="checkbox" class="form-check-input" @bind="@Employee.IsDeleted" />
-                    </div>
-                    <div class="text-danger">@ErrorMessage</div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @onclick="()=>ShowUpdateModal=false" >Close</button>
-                <button type="button" class="btn btn-primary" @onclick="UpdateEmployee">Update</button>
-            </div>
-        </div>
-    </div>
-</div>

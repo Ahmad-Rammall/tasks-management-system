@@ -2,13 +2,11 @@
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
 
-namespace TasksManagementSystem.Web.Components.ProfileModal
+namespace TasksManagementSystem.Web.Components.ProfileUpdateModal
 {
-    public class ProfileModalBase : ComponentBase
+    public class ProfileUpdateModalBase : ComponentBase
     {
-        [Parameter] public UserDTO User { get; set; }
-        [Parameter] public string FullName { get; set; }
-        [Parameter] public string Username { get; set; }
+        [Parameter] public UserDTO Employee { get; set; }
         [Parameter] public string Password { get; set; }
         [Parameter] public EventCallback Callback { get; set; }
         [Parameter] public EventCallback<UserRegisterDTO> OnModalChange { get; set; }
@@ -21,21 +19,22 @@ namespace TasksManagementSystem.Web.Components.ProfileModal
         {
             UserRegisterDTO userRegisterDTO = new UserRegisterDTO
             {
-                FullName = FullName,
-                Username = Username,
+                FullName = Employee?.FullName,
+                Username = Employee?.Username,
                 Password = Password,
             };
             OnModalChange.InvokeAsync(userRegisterDTO);
         }
         public void ExecuteCallback()
         {
-            if (Username?.Length < 5 || Password.Length < 8)
+            if (Employee.Username?.Length < 5 || Password?.Length < 8)
                 return;
             SaveChanges();
             Callback.InvokeAsync();
         }
         public void CloseModal()
         {
+            StateHasChanged();
             IsVisible = false;
         }
         public void ShowModal()
@@ -43,6 +42,5 @@ namespace TasksManagementSystem.Web.Components.ProfileModal
             StateHasChanged();
             IsVisible = true;
         }
-
     }
 }

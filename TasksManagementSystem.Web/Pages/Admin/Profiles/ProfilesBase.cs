@@ -6,6 +6,7 @@ using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
 using TasksManagementSystem.Web.Components.DeleteConfirmationModal;
 using TasksManagementSystem.Web.Components.ProfileModal;
+using TasksManagementSystem.Web.Components.ProfileUpdateModal;
 using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services;
 using TasksManagementSystem.Web.Services.Interfaces;
@@ -21,6 +22,7 @@ namespace TasksManagementSystem.Web.Pages.Admin.Profiles
         public string ErrorMessage { get; set; }
         public bool ShowDeleteModal { get; set; } = false;
         public int SelectedProfileId { get; set; }
+        public UserDTO SelectedUser { get; set; }
         [Inject]public IProfileService _profileService { get; set; }
         [Inject] NavigationManager navigationManager { get; set; }
         [Inject] public IAuthService _authService {  get; set; }
@@ -29,19 +31,28 @@ namespace TasksManagementSystem.Web.Pages.Admin.Profiles
         protected bool IsAdmin { get; set; } = true;
         public DeleteModalBase? deleteModal { get; set; }
         public ProfileModalBase? AddProfileModal { get; set; }
+        public ProfileUpdateModalBase? UpdateProfileModal { get; set; }
 
-        public void UpdateSelectedUserId(int newProfileId)
+        public void UpdateSelectedProfileId(int newProfileId)
         {
             SelectedProfileId = newProfileId;
+        }
+        public void UpdateSelectedUser(UserDTO user)
+        {
+            SelectedUser = user;
         }
         public void OpenDeleteModal()
         {
             deleteModal?.ShowModal();
-            Console.WriteLine(SelectedProfileId);
         }
         public void OpenAddModal()
         {
             AddProfileModal?.ShowModal();
+        }
+        public void OpenUpdateModal()
+        {
+            UpdateProfileModal?.ShowModal();
+            Console.WriteLine(SelectedUser.Id);
         }
         public async Task DeleteEmployee()
         {
@@ -95,6 +106,41 @@ namespace TasksManagementSystem.Web.Pages.Admin.Profiles
                 };
                 await _profileService.AddEmployee(userRegisterDTO);
                 navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
+        public async Task UpdateEmployee()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Password))
+                {
+                    UserUpdateWithoutPassDTO userDto = new UserUpdateWithoutPassDTO
+                    {
+                        FullName = SelectedUser.FullName,
+                        Username = SelectedUser.Username,
+                        IsDeleted = SelectedUser.IsDeleted,
+                    };
+                    await _profileService.UpdateEmployeeWP(SelectedUser.Id, userDto);
+                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                }
+                else
+                {
+                    Console.WriteLine(SelectedUser.Id);
+                    UserUpdateDTO userDto = new UserUpdateDTO
+                    {
+                        FullName = SelectedUser.FullName,
+                        Username = SelectedUser.Username,
+                        IsDeleted = SelectedUser.IsDeleted,
+                        Password = Password
+                    };
+                    await _profileService.UpdateEmployee(SelectedUser.Id, userDto);
+                    navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                }
+
             }
             catch (Exception ex)
             {
