@@ -1,0 +1,25 @@
+﻿<!-- DeleteConfirmationModal.razor -->
+@inherits DeleteModalBase
+
+@if (IsVisible)
+{
+    
+<div class="modal modal-dialog-centered">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h5 class="modal-title">@DisplayModalTitle</h5>
+                <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>@DisplayModalBody</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @onclick="CloseModal">Dismiss</button>
+                <button type="button" class="btn @(IsSuccess ? "btn-success" : "btn-danger")" @onclick="ConfirmDelete">@DisplayActionButton</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+}

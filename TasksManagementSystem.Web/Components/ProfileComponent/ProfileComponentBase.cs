@@ -1,38 +1,26 @@
 ﻿using Microsoft.AspNetCore.Components;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
 using TasksManagementSystem.Web.Services.Interfaces;
+using TasksManagementSystem.Web.Components.DeleteConfirmationModal;
 
 namespace TasksManagementSystem.Web.Components.ProfileComponent
 {
     public class ProfileComponentBase : ComponentBase
     {
-        [Parameter]
-        public UserDTO Employee { get; set; }
-
-        [Parameter]
-        public bool IsDeleted { get; set; }
+        [Parameter] public UserDTO Employee { get; set; }
+        [Parameter] public bool IsDeleted { get; set; }
+        [Parameter] public EventCallback<int> SetSelectedProfileId { get; set; }
+        [Parameter] public Action OpenDeleteModal { get; set; }
         public string ErrorMessage { get; set; }
         public string Password { get; set; }
-
-        public bool ShowDeleteModal { get; set; } = false;
         public bool ShowUpdateModal { get; set; } = false;
+        [Inject] public IProfileService _profileService { get; set; }
+        [Inject] NavigationManager navigationManager { get; set; }
 
-        [Inject]
-        public IProfileService _profileService { get; set; }
-
-        [Inject]
-        NavigationManager navigationManager { get; set; }
-        public async Task DeleteEmployee()
+        public void ShowDeleteModal()
         {
-            try
-            {
-                await _profileService.DeleteUser(Employee.Id);
-                navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = ex.Message;
-            }
+            SetSelectedProfileId.InvokeAsync(Employee.Id);
+            OpenDeleteModal?.Invoke();
         }
         public async Task UpdateEmployee()
         {
@@ -69,5 +57,6 @@ namespace TasksManagementSystem.Web.Components.ProfileComponent
                 ErrorMessage = ex.Message;
             }
         }
+        
     }
 }

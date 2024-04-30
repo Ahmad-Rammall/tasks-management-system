@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TaskManagementSystem.Models.DTOs.ProjectDTOs;
+using TasksManagementSystem.Web.Components.DeleteConfirmationModal;
 using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services;
 using TasksManagementSystem.Web.Services.Interfaces;
@@ -13,16 +14,32 @@ namespace TasksManagementSystem.Web.Pages.Admin.Projects
         public string TitleToAdd { get; set; }
         public string DescriptionToAdd { get; set; }
         public string ErrorMessage { get; set; }
-
-        [Inject]
-        public IProjectService _projectService { get; set; }
-
-        [Inject]
-        public NavigationManager navigationManager { get; set; }
+        public int SelectedProjectId { get; set; }
+        [Inject] public IProjectService _projectService { get; set; }
+        [Inject] public NavigationManager navigationManager { get; set; }
         [Inject] public IAuthService _authService { get; set; }
         [Inject] public IJSRuntime jSRuntime { get; set; }
 
         protected bool IsAdmin { get; set; } = true;
+        public DeleteModalBase? deleteModal { get; set; }
+
+        public void UpdateSelectedProjectId(int newProfileId)
+        {
+            SelectedProjectId = newProfileId;
+        }
+        public void OpenDeleteModal()
+        {
+            deleteModal.ShowModal();
+            Console.WriteLine(SelectedProjectId);
+        }
+        public async Task DeleteProject()
+        {
+            var response = await _projectService.DeleteProject(SelectedProjectId);
+            if (response != null)
+            {
+                navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+            }
+        }
         protected override async Task OnInitializedAsync()
         {
             try

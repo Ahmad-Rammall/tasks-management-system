@@ -14,7 +14,7 @@
 
             @foreach (var project in ProjectsList)
             {
-                <ProjectComponent ProjectID="@project.Id" Title="@project.Title" Description="@project.Description" IsAdmin="true" />
+                <ProjectComponent Project="project" SetSelectedProjectId="UpdateSelectedProjectId" OpenDeleteModal="OpenDeleteModal" />
             }
         </div>
     }
@@ -22,6 +22,10 @@
     {
         <div class="no-content">No Projects Yet!</div>
     }
+
+    @* Delete Modal *@
+
+    <DeleteConfirmationModal @ref="@deleteModal" OnConfirm="DeleteProject" />
 
     @* Add Component *@
 

@@ -26,6 +26,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Components/DeleteConfirmationModal/DeleteConfirmationModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZWxldGVDb25maXJtYXRpb25Nb2RhbFxEZWxldGVDb25maXJtYXRpb25Nb2RhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Components/DisplayError.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXNwbGF5RXJyb3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,38 +1,19 @@
 ﻿@inherits ProjectBase
 
 <div class="projects-container mb-3">
-    <h3 class="title">@Title</h3>
-    <p class="title">@Description</p>
+    <h3 class="title">@Project.Title</h3>
+    <p class="title">@Project.Description</p>
     <div class="buttons">
         <button class="btn btn-success" @onclick="HandleClick">View Tasks</button>
         @if (IsAdmin)
         {
             <button class="btn btn-primary" @onclick="()=>ShowUpdateModal=true">Update</button>
-            <button class="btn btn-danger" @onclick="()=>ShowDeleteModal=true">Delete</button>
+            <button class="btn btn-danger" @onclick="ShowDeleteModal">Delete</button>
+
         }
     </div>
 </div>
 
-
-
-@* Delete Modal *@
-<div class="modal modal-dialog-centered @(!ShowDeleteModal ? "hide" : "")" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Delete Project</h5>
-                <button type="button" class="btn-close" @onclick="() => ShowDeleteModal=false" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete this project?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @onclick="() => ShowDeleteModal=false">Dismiss</button>
-                <button type="button" class="btn btn-danger" @onclick="DeleteProject">Delete</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 @* Update Component *@
 <div class="modal @(!ShowUpdateModal ? "hide" : "") modal-dialog-centered" tabindex="-1">
@@ -46,18 +27,18 @@
                 <form>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Project Title:</label>
-                        <input type="text" class="form-control" @bind="Title">
+                        <input type="text" class="form-control" @bind="Project.Title">
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Task Description:</label>
-                        <textarea class="form-control" @bind="Description"></textarea>
+                        <textarea class="form-control" @bind="Project.Description"></textarea>
                     </div>
                     <div class="text-danger">@ErrorMessage</div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" @onclick="() => ShowUpdateModal=false">Dismiss</button>
-                <button type="button" class="btn btn-primary" @onclick="UpdateProject">Accept</button>
+                @* <button type="button" class="btn btn-primary" @onclick="UpdateProject">Accept</button> *@
             </div>
         </div>
     </div>

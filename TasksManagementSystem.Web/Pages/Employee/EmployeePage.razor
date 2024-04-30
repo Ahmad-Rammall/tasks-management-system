@@ -7,6 +7,6 @@
     {
         foreach (var project in ProjectsList)
         {
-            <ProjectComponent ProjectID="@project.Id" Title="@project.Title" Description="@project.Description" />
+            <ProjectComponent Project="@project" />
         }
     }

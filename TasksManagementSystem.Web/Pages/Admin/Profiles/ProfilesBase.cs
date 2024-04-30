@@ -3,6 +3,7 @@ using Microsoft.JSInterop;
 using System.Threading.Tasks;
 using TaskManagementSystem.Models.DTOs.AuthDTOs;
 using TaskManagementSystem.Models.DTOs.UserDTOs;
+using TasksManagementSystem.Web.Components.DeleteConfirmationModal;
 using TasksManagementSystem.Web.Helpers;
 using TasksManagementSystem.Web.Services;
 using TasksManagementSystem.Web.Services.Interfaces;
@@ -17,16 +18,36 @@ namespace TasksManagementSystem.Web.Pages.Admin.Profiles
         public string Password { get; set; }
         public string ErrorMessage { get; set; }
         public bool ShowDeleteModal { get; set; } = false;
-
-        [Inject]
-        public IProfileService _profileService { get; set; }
-
-        [Inject]
-        NavigationManager navigationManager { get; set; }
+        public int SelectedProfileId { get; set; }
+        [Inject]public IProfileService _profileService { get; set; }
+        [Inject] NavigationManager navigationManager { get; set; }
         [Inject] public IAuthService _authService {  get; set; }
         [Inject] public IJSRuntime jSRuntime { get; set; }
 
         protected bool IsAdmin { get; set; } = true;
+        public DeleteModalBase? deleteModal { get; set; }
+
+        public void UpdateSelectedUserId(int newProfileId)
+        {
+            SelectedProfileId = newProfileId;
+        }
+        public void OpenDeleteModal()
+        {
+            deleteModal.ShowModal();
+            Console.WriteLine(SelectedProfileId);
+        }
+        public async Task DeleteEmployee()
+        {
+            try
+            {
+                await _profileService.DeleteUser(SelectedProfileId);
+                navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
         protected override async Task OnInitializedAsync()
         {
             try

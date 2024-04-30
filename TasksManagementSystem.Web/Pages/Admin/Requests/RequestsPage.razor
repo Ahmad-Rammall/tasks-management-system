@@ -26,14 +26,16 @@
                         <td>
                             <button class="btn btn-success" @onclick="()=>{
                             SelectedRequestId=request.Id;
-                            ShowAcceptModal=true;
+                            OpenAcceptModal();
                             Console.WriteLine(SelectedRequestId);
                         }">
                                 Accept
                             </button>
                             <button class="btn btn-danger" @onclick="()=>{
                             SelectedRequestId=request.Id;
-                            ShowRejectModal=true;
+                            OpenRejectModal();
+                            Console.WriteLine(SelectedRequestId);
+
                         }">
                                 Reject
                             </button>
@@ -45,11 +47,19 @@
     }
     else
     {
-            <div class="text-center no-content">No Requests Yet.</div>
+        <div class="text-center no-content">No Requests Yet.</div>
     }
 
+    @* Reject Modal *@
+    <DeleteConfirmationModal @ref="@RejectModal" OnConfirm="RejectRequest" ModalTitle="Reject Request" />
+
     @* Accept Modal *@
-    <div class="modal-dialog modal-dialog-centered @(!ShowAcceptModal ? "hide" : "")" tabindex="-1">
+    <DeleteConfirmationModal @ref="@AcceptModal" OnConfirm="AcceptRequest" ModalTitle="Accept Request" 
+        ModalBody="Are you sure you want to accept this request?" IsSuccess="true" ActionButton="Accept"/>
+
+
+    @* Accept Modal *@
+    @* <div class="modal-dialog modal-dialog-centered @(!ShowAcceptModal ? "hide" : "")" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -65,10 +75,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
 
     @* Reject Modal *@
-    <div class="modal-dialog modal-dialog-centered @(!ShowRejectModal ? "hide" : "")" tabindex="-1">
+    @*  <div class="modal-dialog modal-dialog-centered @(!ShowRejectModal ? "hide" : "")" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -84,7 +94,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
 }
 else
 {
