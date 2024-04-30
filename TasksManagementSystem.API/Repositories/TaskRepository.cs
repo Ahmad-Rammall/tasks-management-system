@@ -138,5 +138,10 @@ namespace TasksManagementSystem.API.Repositories
         {
             return await _context.TaskApprovalRequests.ToListAsync();
         }
+
+        public async Task<IEnumerable<TaskEntity>> GetEmployeeTasks(int projectId, int employeeId)
+        {
+            return await _context.Tasks.Where(task => task.ProjectId == projectId && task.UserId == employeeId).ToListAsync();
+        }
     }
 }

@@ -38,6 +38,26 @@ namespace TasksManagementSystem.API.Controllers
             }
         }
 
+        [HttpGet("{projectId:int}/{employeeId:int}")]
+        public async Task<ActionResult<IEnumerable<TaskDTO>>> GetEmployeeTasks(
+            [FromRoute] int projectId, [FromRoute] int employeeId)
+        {
+            try
+            {
+                var employeeTasks = await _taskRepo.GetEmployeeTasks(projectId, employeeId);
+                if (employeeTasks == null)
+                {
+                    return NotFound("Error Finding Tasks");
+                }
+
+                return Ok(employeeTasks.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet]
         [Route("requests")]
         public async Task<ActionResult<IEnumerable<TaskDTO>>> GetAllRequests()
