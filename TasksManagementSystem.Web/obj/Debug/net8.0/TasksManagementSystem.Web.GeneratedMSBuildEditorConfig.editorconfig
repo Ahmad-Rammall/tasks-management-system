@@ -34,6 +34,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXNwbGF5RXJyb3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Components/ProfileModal/ProfileModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQcm9maWxlTW9kYWxcUHJvZmlsZU1vZGFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/thinkpad/Desktop/projects/TasksManagementSystem/TasksManagementSystem.Web/Pages/Admin/TasksAdmin/TasksPageAdmin.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVGFza3NBZG1pblxUYXNrc1BhZ2VBZG1pbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

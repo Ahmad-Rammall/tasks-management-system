@@ -1,0 +1,51 @@
+﻿@inherits ProfileModalBase
+
+@if (IsVisible)
+{
+
+    <div class="modal modal-dialog-centered">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Employee Profile</h1>
+                    <button type="button" class="btn-close" @onclick="CloseModal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Employee Fullname:</label>
+                            <input type="text" class="form-control" @bind="FullName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Username :</label>
+                            <input type="text" class="form-control" @bind="Username"></input>
+                            @if (Username?.Length < 5)
+                            {
+                                <DisplayError Message="Username minimum 5 chars." />
+                            }
+                            else
+                            {
+
+                            }
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Password :</label>
+                            <input type="password" class="form-control" @bind="Password"></input>
+                            @if (Password?.Length < 8)
+                            {
+                                <DisplayError Message="Password minimum 8 chars." />
+                            }
+                            else
+                            {
+                            }
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="CloseModal">Close</button>
+                    <button type="button" class="btn btn-primary" @onclick="ExecuteCallback">Add Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

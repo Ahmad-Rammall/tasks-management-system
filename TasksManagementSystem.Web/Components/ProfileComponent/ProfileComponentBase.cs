@@ -11,6 +11,7 @@ namespace TasksManagementSystem.Web.Components.ProfileComponent
         [Parameter] public bool IsDeleted { get; set; }
         [Parameter] public EventCallback<int> SetSelectedProfileId { get; set; }
         [Parameter] public Action OpenDeleteModal { get; set; }
+        [Parameter] public Action OpenAddModal { get; set; }
         public string ErrorMessage { get; set; }
         public string Password { get; set; }
         public bool ShowUpdateModal { get; set; } = false;

@@ -6,7 +6,9 @@
 {
     <div class="d-flex justify-content-between align-items-center m-2 mb-4">
         <h3>ProfilesPage</h3>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProfileModal">Add Profile</button>
+        @* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProfileModal">Add Profile</button> *@
+        <button type="button" class="btn btn-primary" @onclick="@OpenAddModal">Add Profile</button>
+
     </div>
 
     @if (EmployeesList != null && EmployeesList.Count() > 0)
@@ -42,8 +44,10 @@
     <DeleteConfirmationModal @ref="@deleteModal" OnConfirm="DeleteEmployee" />
 
     @* Add Profile *@
+    <ProfileModal @ref="@AddProfileModal" Callback="AddEmployee" Username="@Username"
+                  Password="@Password" FullName="@FullName" OnModalChange="OnModalChange" />
 
-    <div class="modal fade" id="addProfileModal" tabindex="-1" aria-labelledby="addProfileModal" aria-hidden="false">
+@*     <div class="modal fade" id="addProfileModal" tabindex="-1" aria-labelledby="addProfileModal" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -73,7 +77,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
 }
 else
 {
