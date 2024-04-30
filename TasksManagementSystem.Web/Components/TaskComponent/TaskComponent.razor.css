@@ -22,19 +22,6 @@
     color: #666666;
     margin-bottom: 15px;
 }
-
-.task .btn {
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    cursor: pointer;
-}
-
-    .task .btn:hover {
-        background-color: #0056b3;
-    }
 .completed-row{
     display:flex;
     align-items:center;
@@ -44,11 +31,3 @@
     width: 30px;
     height: 30px;
 }
-
-.task .btn-view-comments {
-    background-color: #28a745;
-}
-
-    .task .btn-view-comments:hover {
-        background-color: #218838;
-    }

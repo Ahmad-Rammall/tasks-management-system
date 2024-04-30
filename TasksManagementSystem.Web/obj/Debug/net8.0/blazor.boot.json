@@ -236,7 +236,6 @@
       "TasksManagementSystem.Web.wasm": "sha256-I4wSIwuXkMI8UyUYMfqUghGseyUiLFK/7bH2dK08q40="
     },
     "pdb": {
-      "TaskManagementSystem.Models.pdb": "sha256-1TxpcCLPEiB1IWan1NJe4K3eJxeYWv1q7+toxH0SF0Q=",
       "TasksManagementSystem.Web.pdb": "sha256-RKB8PAIK7tkf8w3ku3CVrKVhoBBBgRrN64odHDAMgLA="
     },
     "satelliteResources": {

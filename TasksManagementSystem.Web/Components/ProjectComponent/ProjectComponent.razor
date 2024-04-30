@@ -4,7 +4,7 @@
     <h3 class="title">@Title</h3>
     <p class="title">@Description</p>
     <div class="buttons">
-        <button class="btn btn-info" @onclick="HandleClick">My Tasks</button>
+        <button class="btn btn-success" @onclick="HandleClick">View Tasks</button>
         @if (IsAdmin)
         {
             <button class="btn btn-primary" @onclick="()=>ShowUpdateModal=true">Update</button>

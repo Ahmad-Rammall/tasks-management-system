@@ -1,13 +1,12 @@
 ﻿@page "/employeePage"
 @inherits EmployeeBase
 
-<h3>EmployeePage</h3>
+    <h3 class="m-4">My Projects</h3><br />
 
-@if(ProjectsList != null)
-{
-    foreach(var project in ProjectsList)
+    @if (ProjectsList != null)
     {
-        <ProjectComponent ProjectID="@project.Id" Title="@project.Title" Description="@project.Description" />
+        foreach (var project in ProjectsList)
+        {
+            <ProjectComponent ProjectID="@project.Id" Title="@project.Title" Description="@project.Description" />
+        }
     }
-}
-
